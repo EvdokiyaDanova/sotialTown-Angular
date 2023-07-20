@@ -1,0 +1,40 @@
+<div class="new-event-border">
+    <div class="header-background">
+        <span>New Event</span>
+    </div>
+    
+
+    <form #newEventForm="ngForm" (ngSubmit)="submitNewEvent(newEventForm)">
+        <div class="new-event-title">
+            <label for="eventName">Title <span class="red">*</span></label>
+            <input #eventName="ngModel" ngModel type="text" name="eventName" id="eventName" required minlength="5">
+
+            <ng-container *ngIf="eventName.touched && eventName.invalid">
+                <p *ngIf="eventName.errors.required" class="error">
+                    Event name is required.
+                </p>
+                <p *ngIf="eventName.errors.minlength" class="error">
+                    Event name must be at least 5 characters long.
+                </p>
+            </ng-container>
+
+        </div>
+        <div class="new-event-content">
+            <label for="postText">Post <span class="red">*</span></label>
+            <textarea #postText="ngModel" type="text" name="postText" ngModel id="postText" rows="8" class="height" required minlength="10"></textarea>
+            <ng-container *ngIf="postText.touched && postText.invalid">
+                <p *ngIf="postText.errors.required" class="error">
+                    The field with your post is required.
+                </p>
+                <p *ngIf="postText.errors.minlength" class="error">
+                    Post must be at least 10 characters long.
+                </p>
+            </ng-container>
+        </div>
+        <div class="new-event-buttons">
+            <button type="button" (click)="navigateToHome()" class="cancel">Cancel</button>
+            <button [disabled]="newEventForm.invalid" class="public">Post</button>
+        </div>
+
+    </form>
+</div>

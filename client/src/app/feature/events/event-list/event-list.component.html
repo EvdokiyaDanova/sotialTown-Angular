@@ -1,0 +1,15 @@
+<form >
+
+  <input [formControl]="searchControl" type="text" placeholder="Search for posts">
+</form>
+
+<div *ngIf="eventList">
+  <ng-container *ngIf="eventList.length > 0">
+    <app-event-list-item *ngFor="let event of eventList" [event]="event"></app-event-list-item>
+  </ng-container>
+  <!-- <div *ngIf="eventList.length === 0">{{localize('no-events-message', l10n)}}</div> -->
+  <div *ngIf="eventList.length === 0">No events yet.</div>
+</div>
+<div *ngIf="!eventList">
+  Loading...
+</div>

@@ -1,0 +1,115 @@
+<!-- <header>
+  <div class="mini-navbar-wrap">
+    <div class="logo-wrap">
+      <p class="logo"><span class="logo">SoftUni Forum</span></p>
+    </div>
+    <div class="mini-navbar" *ngIf="!(isLoggedIn$ | async)">
+      <ul>
+        <li>
+          <a routerLink="/user/login">Login</a>
+        </li>
+        <li>
+          <a routerLink="/user/register">Register</a>
+        </li>
+      </ul>
+    </div>
+    <div class="mini-navbar" *ngIf="(isLoggedIn$ | async)">
+      <ul>
+        <li>
+          <a routerLink="/profile">{{( currentUser$ | async).username}}'s Profile</a>
+        </li>
+        <li>
+          <a href="javascript:void(0);" (click)="logoutHandler()">Logout</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+  <nav>
+    <ul>
+      <li>
+        <a routerLink="/home">Home</a>
+      </li>
+      <li>
+        <a routerLink="/events">events</a>
+      </li>
+      <li>
+        <a routerLink="/events/new">New Event</a>
+      </li>
+
+      <p *ngIf="!!message" [ngClass]="{'error-message': isMessageError, 'success-message': !isMessageError}"
+        class="notification">
+        {{message}}
+      </p>
+    </ul>
+  </nav>
+</header>
+
+//////////////////////////////////////////////////////////////// -->
+
+
+
+<header class="shadow">
+  <div class="container header__container">
+
+
+    <div class="hamburger__menu menu__holder">
+      <ng-container *ngIf="(isLoggedIn$ | async)">
+        <li class="menu__item">
+          <a routerLink="/user/profile" class="text__regular">{{( currentUser$ | async).username}}'s Profile</a>
+        </li>
+        <li class="menu__item">
+          <a href="" class="text__regular">My Events</a>
+        </li>
+        <li class="menu__item">
+          <a href="" class="text__regular">My Favorites</a>
+        </li>
+      </ng-container>
+      <!-- <li>
+        <a routerLink="/home">Home</a>
+      </li> -->
+      <li class="menu__item">
+        <a routerLink="/events" class="text__regular">Events</a>
+      </li>
+      <li class="menu__item">
+        <a routerLink="/events/new" class="text__regular">New Event</a>
+      </li>
+
+    </div>
+    <div class="header__container__logo">
+      <a routerLink="/home">
+      <span class="text__black">Social</span><span class="text__purple">Town</span>
+      </a>
+    </div>
+    <div class="menu">
+      <ul class="menu__holder">
+        <ng-container *ngIf="(isLoggedIn$ | async)">
+          <li class="menu__item">
+            <a href="" class="text__btn text__black">FILLTER</a>
+          </li>
+          <li class="menu__item">
+            <a href="" class="text__btn text__black">NOTIFICATIONS</a>
+          </li>
+          <li class="menu__item">
+            <a href="" class="text__btn text__black">CALENDAR</a>
+          </li>
+          <li class="menu__item">
+            <a href="javascript:void(0);" (click)="logoutHandler()" class="text__btn text__black">Logout</a>
+          </li>
+        </ng-container>
+        <ng-container  *ngIf="!(isLoggedIn$ | async)">
+          <li class="menu__item">
+            <a routerLink="/user/login" class="text__btn text__black">Login</a>
+          </li>
+          <li class="menu__item">
+            <a routerLink="/user/register" class="text__btn text__black">Register</a>
+          </li>
+        </ng-container>
+      
+      </ul>
+    </div>
+  </div>
+  <p *ngIf="!!message" [ngClass]="{'error-message': isMessageError, 'success-message': !isMessageError}"
+  class="notification">
+  {{message}}
+</p>
+</header>

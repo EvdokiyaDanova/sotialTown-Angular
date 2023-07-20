@@ -1,0 +1,51 @@
+<!-- <div *ngIf="postList">
+  <div *ngFor="let post of postList" class="aside-event">
+    <a href="#">
+      <h3>{{post.eventId.eventName}}</h3>
+      <p>{{post.text}}</p>
+      <p><span>{{post.created_at | timeAgo}}</span></p>
+      <p><span>{{now | date: 'medium'}}</span></p>
+      <p><span>{{post.created_at | date: 'medium'}}</span></p>
+    </a>
+  </div>
+  <div *ngIf="postList.length === 0">No Posts!</div>
+</div> -->
+
+
+
+
+<!-- comment  -->
+<ng-container *ngIf="postList">
+  <div class="comment" *ngFor="let comment of postList">
+    <header class="header">
+      <p><span>{{comment.userId.username}}</span> posted on <time>{{comment.created_at | date:'short'}}</time></p>
+    </header>
+    <div class="comment-main">
+      <div class="userdetails">
+        <img src="/assets/profile.png" alt="avatar">
+      </div>
+      <div class="post-content">
+        <p>{{comment.text}}</p>
+      </div>
+    </div>
+    <div class="footer">
+      <span *ngIf="(isLoggedIn$ | async) && !(canLike(comment) | async)">
+        It's your post
+        <span class="fas fa-thumbs-up"></span>
+        <span>{{comment.likes.length}}</span>
+        <span class="fas fa-thumbs-down"></span>
+        <span>{{comment.unlikes.length}}</span>
+      </span>
+      <span *ngIf="(isLoggedIn$ | async) && (canLike(comment) | async)">
+        <span>{{comment.likes.length}}</span>
+        <span class="fas fa-thumbs-up" (click)="toggleLikes(comment)" [class.disabled]="isUnliked"></span>
+        <span>{{comment.unlikes.length}}</span>
+        <span class="fas fa-thumbs-down" (click)="toggleUnlikes(comment)" [class.disabled]="isLiked"></span>
+        
+      </span>
+    </div>
+  </div>
+</ng-container>
+<div *ngIf="!postList">
+  Loading...
+</div>

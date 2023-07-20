@@ -1,0 +1,443 @@
+@import url('./assets/reset.css');
+@import url('./assets/layout.css');
+@import url('./assets/typography.css');
+@import url('./assets/responsive.css');
+
+
+/*#region add fonts */
+
+
+@import url('https://fonts.googleapis.com/css2?family=Caveat:wght@400;500;600;700&family=Lemonada:wght@300;400;500;600;700&family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+/*#endregion add fonts */
+
+
+/*#region clear default html styles*/
+
+body,
+div,
+section,
+ul,
+li,
+p,
+a,
+span,
+input,
+select,
+img,
+textarea,
+h1,
+h2,
+h3,
+h4 {
+    margin: 0px;
+    padding: 0px;
+    box-sizing: border-box;
+    text-decoration: none;
+    outline: none;
+    font-family: Helvetica, Sans-Serif;
+    list-style: none;
+}
+
+a,
+a:hover,
+a:focus,
+a:visited,
+a:active,
+button,
+button:hover,
+button:focus,
+button:visited,
+button:active {
+    text-decoration: none !important;
+    outline: none !important;
+    cursor: pointer;
+    box-shadow: none !important;
+}
+
+:root {
+    --white: #ffffff;
+    --black: #000000;
+    --purple: #9562B2;
+    --purple_opacity: rgba(149, 98, 178, 0.5);
+    --yewoll: #F8B101;
+    --red: #F40000;
+    --gray: #707070;
+    --gray_form_back: #ebebeb;
+}
+
+
+/*#endregion clear default html styles*/
+
+
+/*#region global styles*/
+
+body {
+    padding-top: 65px;
+}
+
+.container {
+    width: 100%;
+    max-width: 1300px;
+    padding: 0 5px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.margin__vertical15 {
+    margin: 15px 0px;
+}
+.margin__top{
+    margin-top: 15px;
+}
+
+.flex__row__space {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    justify-content: space-between;
+}
+
+.flex__row__center {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-start;
+}
+
+.flex__row__start {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    justify-content: flex-start;
+}
+
+.flex__row__end {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    justify-content: flex-end;
+}
+
+.back__purple__opacity {
+    background-color: var(--purple_opacity);
+}
+
+.shadow {
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+    -webkit-box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+}
+
+.shadow__top {
+    -webkit-box-shadow: 1px -9px 14px -13px rgba(0, 0, 0, 0.24);
+    box-shadow: 1px -9px 14px -13px rgba(0, 0, 0, 0.24);
+}
+
+
+.text__black {
+    color: var(--black);
+}
+
+.text__purple {
+    color: var(--purple);
+}
+
+.icon__size40 {
+    font-size: 40px;
+}
+
+h1,
+.text__h1 {
+    font-family: "Lemonada", Times, cursive;
+    font-size: 48px;
+    line-height: 56px;
+    font-weight: 900;
+    text-transform: none;
+    color: var(--black);
+}
+
+h2,
+.text__h2 {
+    font-family: "Lemonada", Times, cursive;
+    font-size: 40px;
+    line-height: 48px;
+    font-weight: 900;
+    text-transform: none;
+    color: var(--black);
+}
+
+h3,
+.text__h3 {
+    font-family: "Lemonada", Times, cursive;
+    font-size: 32px;
+    line-height: 40px;
+    font-weight: 600;
+    text-transform: none;
+    color: var(--black);
+}
+
+h4,
+.text__h4 {
+    font-family: "Lemonada", Times, cursive;
+    font-size: 24px;
+    line-height: 36px;
+    font-weight: 900;
+    text-transform: none;
+    color: var(--black);
+}
+
+p,
+li,
+a,
+option,
+ol,
+input,
+label,
+::placeholder,
+::-moz-placeholder,
+::-webkit-input-placeholder,
+.text__regular {
+    font-family: "Montserrat", Arial, sans-serif;
+    font-size: 16px;
+    line-height: 24px;
+    font-weight: normal;
+    text-transform: none;
+    color: var(--black);
+}
+
+.text__sub__normal {
+    font-family: "Montserrat", Arial, sans-serif;
+    font-size: 12px;
+    line-height: 18px;
+    font-weight: normal;
+    text-transform: none;
+    font-style: italic;
+    color: var(--black);
+}
+
+.text__sub__accent {
+    font-family: "Caveat", Times, cursive;
+    font-size: 12px;
+    line-height: 18px;
+    font-weight: 900;
+    text-transform: none;
+    color: var(--black);
+}
+
+.text__tab {
+    font-family: "Montserrat", Arial, sans-serif;
+    font-size: 18px;
+    line-height: 24px;
+    font-weight: 900;
+    text-transform: uppercase;
+    color: var(--black);
+}
+
+.text__btn {
+    font-family: "Montserrat", Arial, sans-serif;
+    font-size: 16px;
+    line-height: 24px;
+    font-weight: 600;
+    text-transform: uppercase;
+}
+
+.btn__primary {
+    height: 40px;
+    min-width: 180px;
+    text-align: center;
+    padding: auto 15px;
+    color: var(--white);
+    background-color: var(--purple);
+    border: 2px solid var(--purple);
+    border-radius: 8px;
+    transition: all 0.2s ease-in-out;
+    cursor: pointer;
+
+}
+
+.btn__primary:hover {
+    color: var(--purple);
+    background-color: var(--white);
+}
+
+.btn__secondary {
+    height: 40px;
+    min-width: 180px;
+    text-align: center;
+    padding: auto 15px;
+    color: var(--purple);
+    background-color: var(--white);
+    border: 2px solid var(--white);
+    border-radius: 8px;
+    transition: all 0.2s ease-in-out;
+    cursor: pointer;
+
+}
+
+.btn__secondary:hover {
+    color: var(--white);
+    background-color: var(--purple);
+}
+
+
+
+/*#endregion global styles*/
+
+
+
+
+
+
+/*#region form styles*/
+
+.main-block {
+    max-width: 340px;
+    min-height: 370px;
+    padding: 25px 10px;
+    margin: auto;
+    border-radius: 5px;
+    border: solid 1px var(--gray);
+    background: var(--gray_form_back);
+}
+
+form {
+    max-width: 100%;
+}
+
+form .btn__secondary,
+form .btn__primary {
+    min-width: 100px;
+    margin-left: 15px;
+}
+
+input[type=radio],
+input[type=checkbox] {
+    display: none;
+}
+
+label.radio,
+label.checkbox {
+    position: relative;
+    display: inline-block;
+    padding-top: 4px;
+    margin-right: 20px;
+    text-indent: 30px;
+    overflow: visible;
+    cursor: pointer;
+}
+
+label.radio:before {
+    content: "";
+    position: absolute;
+    top: 2px;
+    left: 0;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background: var(--purple);
+}
+
+label.checkbox:before {
+    content: "";
+    position: absolute;
+    top: 5px;
+    left: 5px;
+    width: 15px;
+    height: 15px;
+    border-radius: 2px;
+    background: var(--purple);
+}
+
+label.radio:after,
+label.checkbox:after {
+    content: "";
+    position: absolute;
+    width: 9px;
+    height: 4px;
+    top: 8px;
+    left: 4px;
+    border: 3px solid var(--white);
+    border-top: none;
+    border-right: none;
+    transform: rotate(-45deg);
+    opacity: 0;
+}
+
+label.checkbox:after {
+    left: 7px;
+}
+
+input[type=radio]:checked+label:after,
+input[type=checkbox]:checked+label:after {
+    opacity: 1;
+}
+
+input[type=text],
+input[type=password],
+select,
+textarea {
+    width: 280px;
+    height: 40px;
+    padding: 0px 10px;
+    border-radius: 8px;
+    border: solid 1px var(--black);
+    background: var(--white);
+}
+
+input[type=date],
+input[type=time] {
+    height: 40px;
+    padding: 0px 10px;
+    border-radius: 8px;
+    border: solid 1px var(--black);
+    background: var(--white);
+}
+
+textarea {
+    padding: 10px;
+    height: 100px;
+    resize: none;
+}
+
+input[type=file]::-webkit-file-upload-button {
+    visibility: hidden;
+}
+
+input[type=file]::before {
+    content: 'Select event image';
+    display: inline-block;
+    background: linear-gradient(top, #f9f9f9, #e3e3e3);
+    border: 1px solid var(--gray);
+    border-radius: 8px;
+    padding: 5px 8px;
+    outline: none;
+    white-space: nowrap;
+    -webkit-user-select: none;
+    cursor: pointer;
+    text-shadow: 1px 1px var(--white);
+    font-weight: 700;
+    font-size: 10pt;
+}
+
+input[type=file]:hover::before {
+    border-color: black;
+}
+
+input[type=file]:active::before {
+    background: -webkit-linear-gradient(top, #e3e3e3, #f9f9f9);
+}
+
+.icon {
+    display: inline-block;
+    color: var(--purple);
+    text-align: center;
+    font-size: 24px;
+    margin-right: 10px;
+}
+
+.error {
+    color: var(--red);
+}
+
+
+/*#endregion form styles*/

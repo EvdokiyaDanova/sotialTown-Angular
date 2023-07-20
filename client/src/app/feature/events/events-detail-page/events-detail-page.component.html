@@ -1,0 +1,42 @@
+<div *ngIf="!!event; else loadingIndicator" class="event-content">
+    <!-- event-title  -->
+    <div class="event-title">
+        <div class="event-name-wrapper">
+            <div class="event-name">
+                <h2>{{event.eventName}}</h2>
+                <p>Date: <time> {{event.created_at | date:'short'}}</time></p>
+            </div>
+            <div class="subscribers">
+                <p>Subscribers: <span>{{event.subscribers.length}}</span></p>
+                <ng-container *ngIf="(isLoggedIn$ | async)">
+                    <button (click) = 'subscribe()' *ngIf="canSubscribe" class="subscribe">Subscribe</button>
+                    <button (click) = 'unsubscribe()' *ngIf="!canSubscribe" class="unsubscribe">Unsubscribe</button>
+                </ng-container>
+            </div>
+        </div>
+    </div>
+   
+
+    <div *ngIf="(isLoggedIn$ | async)" class="answer-comment">
+        <p><span><currentUser>{{currentUser.username}} </currentUser></span> add comment here:</p>
+        <div class="answer">
+            <form #newPostForm="ngForm" (ngSubmit)="submitNewPost(event._id, newPostForm)">
+                <textarea name="postText" id="comment" cols="30" rows="10" [(ngModel)]="newPostForm.value.postText"></textarea>
+                <button>Post</button>
+              </form>
+              
+        </div>
+    </div>
+
+
+    <div>
+        <app-aside [eventId]="event._id"></app-aside>
+    </div>
+
+</div>
+<!-- forDelete -->
+<!-- <a routerLink="/events/5fa64a9f2183ce1728ff371a">Angular 10</a> -->
+
+<ng-template #loadingIndicator>
+    Loading...
+</ng-template>

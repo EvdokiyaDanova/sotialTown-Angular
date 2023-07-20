@@ -1,0 +1,44 @@
+/* footer {
+  background: rgb(0, 212, 255);
+  margin-top: 1em;
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  max-width: 1366px;
+}
+
+footer p {
+  margin: 0;
+  padding: 0;
+  font-size: 0.7em;
+  text-align: center;
+}
+
+footer span {
+  font-size: 1.5em;
+} */
+
+
+/*#region footer styles*/
+
+footer .footer-menu {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  padding: 50px 5px;
+}
+
+
+footer .footer-copy {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  min-height: 60px;
+}
+
+
+/*#endregion footer styles*/

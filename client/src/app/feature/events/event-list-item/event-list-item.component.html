@@ -1,0 +1,28 @@
+<div class="event-container">
+  <div class="event-name-wrapper">
+    <div class="event-name">
+      <a [routerLink]="['/events', event._id]" class="normal">
+        <h2 *ngIf="event.eventName.length > 25">{{(event.eventName | slice:0:25) + '...' }}</h2>
+        <h2 *ngIf="event.eventName.length <= 25">{{event.eventName}}</h2>
+      </a>
+      <div class="columns">
+        <div>
+          <p>Date: <time>{{event.created_at | date: 'yyyy-MM-dd'}}</time></p>
+          <div class="nick-name">
+            <p>Username: 
+              <span *ngIf="!event.userId.username">Deleted User</span>
+              <span *ngIf="event.userId.username">{{event.userId.username}}</span>
+           </p>
+          </div>
+        </div>
+        <div class="subscribers">
+          <button *ngIf="(isLoggedIn$ | async)" [class.subscribe]="(canSubscribe$ | async)" [class.unsubscribe]="!(canSubscribe$ | async)">
+            {{ (canSubscribe$ | async) ? 'SubscribeHere' : 'UnsubscribeHere' }}
+          </button>
+          <p>Subscribers: <span>{{event.subscribers.length}}</span></p>
+        </div>
+      </div>
+    </div>
+    <!-- <app-post-list [eventId]="event._id"></app-post-list> -->
+  </div>
+</div>

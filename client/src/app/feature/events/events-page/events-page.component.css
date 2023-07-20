@@ -1,0 +1,14 @@
+:host {
+    display: flex;
+    justify-content: space-around;
+  }
+  /* forDelete */
+ main {
+    width: 100%;
+  }
+    /*
+  aside {
+    width: 30%;
+    margin-top: 1em;
+    font-size: 0.8em;
+  } */
