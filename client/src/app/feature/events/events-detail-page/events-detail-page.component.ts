@@ -18,6 +18,7 @@ export class EventsDetailPageComponent implements OnInit {
   event: IEvent<IPost>;
   canSubscribe: boolean = false;
   currentUser?:IUser;
+  canSubmitPost: boolean = false;
 
   //currentUser$: Observable<IUser> = this.authService.currentUser$;
  isLoggedIn$: Observable<boolean> = this.authService.isLoggedIn$;
@@ -53,27 +54,27 @@ export class EventsDetailPageComponent implements OnInit {
   
 
   }
-
-
-
-
+  postTextChanged(event: any): void {
+    //console.log("postTextChanged");
+    this.canSubmitPost = event.target.value.trim() !== '';
+    //this.canSubmitPost=newPostForm.value.postText !== '';
+  }
   submitNewPost(eventId: string, newPostForm: NgForm): void {
-    console.log(newPostForm.value);
-    this.postService.addPost$(eventId, newPostForm.value).subscribe({
-      next: (post) => {
-        console.log("My postQ!!!!!", post);
-        newPostForm.reset(); 
-       //this.loadPostList(eventId); 
-      },
-      error: (error) => {
-        console.error(error);
-      }
-    });
+   // console.log(newPostForm.value);
+    if(this.canSubmitPost){
+      this.postService.addPost$(eventId, newPostForm.value).subscribe({
+        next: (post) => {
+          newPostForm.reset(); 
+         //this.loadPostList(eventId); 
+        },
+        error: (error) => {
+          console.error(error);
+        }
+      });
+    }
+   
   }
 
-    // canLike2(comment: IPost) {
-  //   return this.currentUser && !comment.likes.includes(this.currentUser._id);
-  // }
 
   subscribe():void{
      this.eventService.subscribeToEvent(this.event._id)

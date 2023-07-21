@@ -23,13 +23,13 @@ export class EventListItemComponent implements OnChanges {
   // }
 
   ngOnChanges(): void {
-    // console.log('subs', this.event.subscribers.includes('5fa64b162183ce1728ff371d'));
-    // TODO stoimenovg: use currentUser$!
     this.canSubscribe$ = this.authService.currentUser$.pipe(
       map((currentUser)=>{
         if(!currentUser || !this.event){
           return false;
         }
+        console.log("event-list" , this.event);
+        
         return !this.event.subscribers.includes(currentUser._id);
       })
     );

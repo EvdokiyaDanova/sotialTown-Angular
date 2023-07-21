@@ -20,9 +20,13 @@
     <div *ngIf="(isLoggedIn$ | async)" class="answer-comment">
         <p><span><currentUser>{{currentUser.username}} </currentUser></span> add comment here:</p>
         <div class="answer">
-            <form #newPostForm="ngForm" (ngSubmit)="submitNewPost(event._id, newPostForm)">
+            <!-- <form #newPostForm="ngForm" (ngSubmit)="submitNewPost(event._id, newPostForm)">
                 <textarea name="postText" id="comment" cols="30" rows="10" [(ngModel)]="newPostForm.value.postText"></textarea>
                 <button>Post</button>
+              </form> -->
+              <form #newPostForm="ngForm" (ngSubmit)="submitNewPost(event._id, newPostForm)">
+                <textarea name="postText" id="comment" cols="30" rows="10" [(ngModel)]="newPostForm.value.postText" (input)="postTextChanged($event)"></textarea>
+                <button [class.disabled]="!canSubmitPost">Post</button>
               </form>
               
         </div>

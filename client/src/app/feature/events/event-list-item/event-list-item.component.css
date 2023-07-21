@@ -63,3 +63,10 @@
 time {
   font-weight: bold;
 }
+
+.favorite{
+  color: red;
+}
+.add-to-favorite{
+  color: #999;
+}

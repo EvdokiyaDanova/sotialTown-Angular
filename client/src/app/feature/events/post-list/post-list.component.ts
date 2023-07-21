@@ -57,6 +57,7 @@ export class PostListComponent implements OnInit {
     );
   }
 
+ 
   toggleLikes(comment: IPost): void {
     this.authService.currentUser$.pipe(
       map(user => user?._id)
@@ -79,8 +80,6 @@ export class PostListComponent implements OnInit {
     });
   }
 
-
-
   toggleUnlikes(comment: IPost): void {
     this.authService.currentUser$.pipe(
       map(user => user?._id)
@@ -99,10 +98,6 @@ export class PostListComponent implements OnInit {
 
     });
   }
-
-
-
-
 
 
 

@@ -10,6 +10,8 @@ import { SharedModule } from 'src/app/shared/shared.module';
 import { EventsDetailPageComponent } from './events-detail-page/events-detail-page.component';
 import { EventsNewPageComponent } from './events-new-page/events-new-page.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { EventsFavoritePageComponent } from './events-favorite-page/events-favorite-page.component';
+import { EventsMyeventsPageComponent } from './events-myevents-page/events-myevents-page.component';
 
 @NgModule({
   declarations: [
@@ -20,6 +22,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     EventsPageComponent,
     EventsDetailPageComponent,
     EventsNewPageComponent,
+    EventsFavoritePageComponent,
+    EventsMyeventsPageComponent,
   ],
   imports: [
     CommonModule,
