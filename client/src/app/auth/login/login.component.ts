@@ -5,6 +5,7 @@ import { AuthService } from 'src/app/auth.service';
 import { MessageBusService, MessageType } from 'src/app/core/message-bus.service';
 import { UserService } from 'src/app/core/user.service';
 import { emailValidator } from '../util';
+import { faEnvelope } from '@fortawesome/free-solid-svg-icons';
 
 const myRequired = (control: AbstractControl) => {
   // console.log('validator called');
@@ -17,6 +18,7 @@ const myRequired = (control: AbstractControl) => {
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
+  emailIcon = faEnvelope;
   errorMessage: string = '';
 
   loginFormGroup: FormGroup = this.formBuilder.group({

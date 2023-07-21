@@ -19,7 +19,8 @@
           <!-- <button *ngIf="(isLoggedIn$ | async)" [class.subscribe]="(canSubscribe$ | async)" [class.unsubscribe]="!(canSubscribe$ | async)">
             {{ (canSubscribe$ | async) ? 'SubscribeHere' : 'UnsubscribeHere' }}
           </button> -->
-          <span class="fas fa-heart" *ngIf="(isLoggedIn$ | async)" [class.add-to-favorite]="(canSubscribe$ | async)" [class.favorite]="!(canSubscribe$ | async)"></span>
+          <fa-icon [icon]="favorite" *ngIf="(isLoggedIn$ | async)" [class.add-to-favorite]="(canSubscribe$ | async)" [class.favorite]="!(canSubscribe$ | async)"></fa-icon>
+          <!-- <span class="fas fa-heart" *ngIf="(isLoggedIn$ | async)" [class.add-to-favorite]="(canSubscribe$ | async)" [class.favorite]="!(canSubscribe$ | async)"></span> -->
           <p>Subscribers: <span>{{event.subscribers.length}}</span></p>
         </div>
       </div>

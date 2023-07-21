@@ -4,6 +4,7 @@ import { AuthService } from 'src/app/auth.service';
 import { UserService } from 'src/app/core/user.service';
 import { IEvent } from '../../../core/interfaces';
 import { map } from 'rxjs/operators';
+import { faHeart } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-event-list-item',
@@ -11,6 +12,7 @@ import { map } from 'rxjs/operators';
   styleUrls: ['./event-list-item.component.css']
 })
 export class EventListItemComponent implements OnChanges {
+  favorite = faHeart;
 
   isLoggedIn$: Observable<boolean> = this.authService.isLoggedIn$;
   canSubscribe$: Observable<boolean>;
