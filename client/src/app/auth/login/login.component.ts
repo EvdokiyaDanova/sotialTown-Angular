@@ -6,6 +6,7 @@ import { MessageBusService, MessageType } from 'src/app/core/message-bus.service
 import { UserService } from 'src/app/core/user.service';
 import { emailValidator } from '../util';
 import { faEnvelope } from '@fortawesome/free-solid-svg-icons';
+import { IconService } from 'src/app/core/icon.service';
 
 const myRequired = (control: AbstractControl) => {
   // console.log('validator called');
@@ -18,7 +19,7 @@ const myRequired = (control: AbstractControl) => {
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
-  emailIcon = faEnvelope;
+  icons: { [key: string]: any };
   errorMessage: string = '';
 
   loginFormGroup: FormGroup = this.formBuilder.group({
@@ -31,7 +32,10 @@ export class LoginComponent implements OnInit {
     private authService: AuthService,
     private activatedRoute: ActivatedRoute,
     private messageBus: MessageBusService,
-    private router: Router) { }
+    private router: Router,
+    private iconService: IconService) { 
+      this.icons = this.iconService.getIcons();
+    }
 
   ngOnInit(): void {
 

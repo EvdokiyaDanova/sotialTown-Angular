@@ -31,16 +31,18 @@
     <div class="footer">
       <span *ngIf="(isLoggedIn$ | async) && !(canLike(comment) | async)">
         It's your post
-        <span class="fas fa-thumbs-up"></span>
+        <fa-icon class="likeIcon" [icon]="icons.likeIcon"></fa-icon>
         <span>{{comment.likes.length}}</span>
-        <span class="fas fa-thumbs-down"></span>
+        <fa-icon class="unlikeIcon" [icon]="icons.unlikeIcon"></fa-icon>
         <span>{{comment.unlikes.length}}</span>
       </span>
       <span *ngIf="(isLoggedIn$ | async) && (canLike(comment) | async)">
         <span>{{comment.likes.length}}</span>
-        <span class="fas fa-thumbs-up" (click)="toggleLikes(comment)" [class.disabled]="isUnliked"></span>
+        <fa-icon class="likeIcon" [icon]="icons.likeIcon" (click)="toggleLikes(comment)" [class.disabled]="isUnliked"></fa-icon>
+        <!-- <span class="fas fa-thumbs-up" (click)="toggleLikes(comment)" [class.disabled]="isUnliked"></span> -->
         <span>{{comment.unlikes.length}}</span>
-        <span class="fas fa-thumbs-down" (click)="toggleUnlikes(comment)" [class.disabled]="isLiked"></span>
+        <fa-icon class="unlikeIcon" [icon]="icons.unlikeIcon" (click)="toggleUnlikes(comment)" [class.disabled]="isLiked"></fa-icon>
+        <!-- <span class="fas fa-thumbs-down" (click)="toggleUnlikes(comment)" [class.disabled]="isLiked"></span> -->
       </span>
     </div>
   </div>

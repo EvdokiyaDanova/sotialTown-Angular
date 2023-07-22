@@ -13,6 +13,8 @@ import { AppRoutingModule } from './app-routing.module';
 import { AuthModule } from './auth/auth.module';
 import { AuthService } from './auth.service';
 import { CommonModule } from '@angular/common';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { IconService } from './core/icon.service';
 
 @NgModule({
   declarations: [
@@ -25,6 +27,7 @@ import { CommonModule } from '@angular/common';
     CoreModule.forRoot(),
     AppRoutingModule,
     PagesModule,
+    FontAwesomeModule
   ],
   providers: [
     {
@@ -34,7 +37,8 @@ import { CommonModule } from '@angular/common';
       },
       deps: [AuthService],
       multi: true
-    }
+    },
+    IconService
   ],
   bootstrap: [
     AppComponent,

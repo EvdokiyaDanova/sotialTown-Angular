@@ -6,8 +6,7 @@
 
         <p class="field field-icon">
             <label for="email"><span>
-                <fa-icon [icon]="emailIcon"></fa-icon>
-                <!-- <i class="fas fa-envelope"></i> -->
+                <fa-icon [icon]="icons.emailIcon"></fa-icon>
             </span></label>
             <input formControlName="email" type="email" name="email" id="email" placeholder="john.doe@gmail.com">
         </p>
@@ -22,7 +21,9 @@
         </ng-container>
 
         <p class="field field-icon">
-            <label for="password"><span><i class="fas fa-lock"></i></span></label>
+            <label for="password"><span>
+                <fa-icon [icon]="icons.passwordIcon"></fa-icon>
+            </span></label>
             <input formControlName="password" type="password" name="password" id="password" placeholder="******">
         </p>
 

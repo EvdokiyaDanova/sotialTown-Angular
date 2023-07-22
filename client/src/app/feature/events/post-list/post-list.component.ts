@@ -5,6 +5,7 @@ import { PostService } from '../../../core/post.service';
 import { BehaviorSubject, Observable, Subscription } from 'rxjs';
 import { map, tap } from 'rxjs/operators';
 import { AuthService } from 'src/app/auth.service';
+import { IconService } from 'src/app/core/icon.service';
 
 @Component({
   selector: 'app-post-list',
@@ -12,7 +13,7 @@ import { AuthService } from 'src/app/auth.service';
   styleUrls: ['./post-list.component.css']
 })
 export class PostListComponent implements OnInit {
-
+  icons: { [key: string]: any };
   now = new Date();
 
   @Input() eventId: string;
@@ -27,7 +28,10 @@ export class PostListComponent implements OnInit {
 
   private postAddedSubscription: Subscription;
   constructor(private postService: PostService,
-    private authService: AuthService,) { }
+    private authService: AuthService,
+    private iconService: IconService) { 
+      this.icons = this.iconService.getIcons();
+    }
 
 
 

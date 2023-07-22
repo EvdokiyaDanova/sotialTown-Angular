@@ -11,6 +11,7 @@ import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AuthInterceptor } from './auth.interceptor';
 import { ErrorHandlerInterceptor } from './error-handler.interceptor';
 
+
 @NgModule({
   declarations: [
     HeaderComponent,
@@ -18,13 +19,14 @@ import { ErrorHandlerInterceptor } from './error-handler.interceptor';
   ],
   imports: [
     CommonModule,
-    RouterModule
+    RouterModule,
   ],
   exports: [
     HeaderComponent,
-    FooterComponent
+    FooterComponent,
   ],
-  providers: []
+  providers: [
+  ]
 })
 export class CoreModule {
   static forRoot(): ModuleWithProviders<CoreModule> {

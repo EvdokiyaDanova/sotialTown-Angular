@@ -31,9 +31,7 @@ h3 {
 
 
 /* comment  */
-.disabled{
-    opacity: 0.5;
-}
+
 .comment {
     margin-top: 1em;
     border: 1px solid;
@@ -104,10 +102,13 @@ h3 {
     padding-left: 0.5em;
 }
 
-.footer .fas.fa-thumbs-up {
+.footer .likeIcon {
     color: green;
 }
 
-.footer .fas.fa-thumbs-down {
+.footer .unlikeIcon {
     color: red;
+}
+.disabled{
+    opacity: 0.5;
 }

@@ -20,7 +20,6 @@
             {{ (canSubscribe$ | async) ? 'SubscribeHere' : 'UnsubscribeHere' }}
           </button> -->
           <fa-icon [icon]="favorite" *ngIf="(isLoggedIn$ | async)" [class.add-to-favorite]="(canSubscribe$ | async)" [class.favorite]="!(canSubscribe$ | async)"></fa-icon>
-          <!-- <span class="fas fa-heart" *ngIf="(isLoggedIn$ | async)" [class.add-to-favorite]="(canSubscribe$ | async)" [class.favorite]="!(canSubscribe$ | async)"></span> -->
           <p>Subscribers: <span>{{event.subscribers.length}}</span></p>
         </div>
       </div>

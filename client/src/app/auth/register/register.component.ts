@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { AuthService } from 'src/app/auth.service';
 import { CreateUserDto, UserService } from 'src/app/core/user.service';
 import { emailValidator, passwordMatch, passwordMatch2 } from '../util';
+import { IconService } from 'src/app/core/icon.service';
 
 @Component({
   selector: 'app-register',
@@ -11,7 +12,7 @@ import { emailValidator, passwordMatch, passwordMatch2 } from '../util';
   styleUrls: ['./register.component.css']
 })
 export class RegisterComponent implements OnInit {
-
+  icons: { [key: string]: any };
   passwordControl = new FormControl(null, [Validators.required, Validators.minLength(5)]);
 
   get passwordsGroup(): FormGroup {
@@ -29,7 +30,13 @@ export class RegisterComponent implements OnInit {
     'tel': new FormControl(''),
   })
 
-  constructor(private formBuilder: FormBuilder, private authService: AuthService, private router: Router) { }
+  constructor(
+    private formBuilder: FormBuilder, 
+    private authService: AuthService, 
+    private router: Router,
+    private iconService: IconService) { 
+      this.icons = this.iconService.getIcons();
+    }
 
   ngOnInit(): void {
   }
