@@ -85,25 +85,4 @@ export class EventsDetailPageComponent implements OnInit {
     .subscribe(()=> this.refresh$.next(undefined));
   }
 
-
-
-
-  // toglleLikes(comment: IPost):void{
-  //   console.log("toggle like");
-    
-  //   this.eventService.likePost(comment._id)
-  //   .subscribe(()=> this.refresh$.next(undefined));
-  // }
-  
-  // loadPostList(eventId: string): void {
-  //   this.postService.loadPostList$(eventId, 5).subscribe(posts => {
-      
-  //     this.event.posts = posts; // Актуализирайте списъка с постове на текущото събитие
-  //     console.log(posts);
-      
-  //   });
-  // }
-  
-  
-
 }

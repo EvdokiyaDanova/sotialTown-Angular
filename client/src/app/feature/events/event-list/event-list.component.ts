@@ -69,7 +69,7 @@ export class EventListComponent implements OnInit, AfterViewInit {
       
       //this.isFavoritePage = segments.some((segment) => segment.path === 'favorite');
       this.pageName = segments[0]?.path;
-      console.log("this.pageName ", this.pageName);
+    //  console.log("this.pageName ", this.pageName);
       
 
       this.searchControl.valueChanges

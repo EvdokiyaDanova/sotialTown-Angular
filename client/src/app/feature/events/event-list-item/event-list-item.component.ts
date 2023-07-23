@@ -24,7 +24,8 @@ export class EventListItemComponent implements OnChanges {
   //   console.log('event', this.event.eventName);
   // }
 
-  ngOnChanges(): void {
+  ngOnChanges(changes: SimpleChanges): void {
+    console.log('Changes:', changes)
     this.canSubscribe$ = this.authService.currentUser$.pipe(
       map((currentUser)=>{
         if(!currentUser || !this.event){

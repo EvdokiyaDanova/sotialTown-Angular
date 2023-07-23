@@ -19,8 +19,8 @@ export class  PostService {
     return this.http.get<IPost[]>(
       `${apiUrl}/posts/${eventId}${limit ? `?limit=${limit}` : ''}`
     ).pipe(
-     // tap(result => console.log('id от заявката:', eventId)),
-      tap(result => console.log('Резултат от заявката posltList:', result))
+     // tap(result => console.log('id from loadPostList$ request::', eventId)),
+      tap(result => console.log('Result from loadPostList$ request:', result))
     );
   }
 
@@ -33,16 +33,16 @@ export class  PostService {
   }
   
   
-  likePost(postId:string):Observable<void>{
+  likePost$(postId:string):Observable<void>{
     return this.http.put<void>(`${apiUrl}/likes/${postId}`,{} ,{ withCredentials: true });
   }
-   dislikePost(postId:string):Observable<void>{
+   dislikePost$(postId:string):Observable<void>{
     return this.http.put<void>(`${apiUrl}/dislikes/${postId}`,{},{ withCredentials: true });
   }
-  unlikePost(postId:string):Observable<void>{
+  unlikePost$(postId:string):Observable<void>{
     return this.http.put<void>(`${apiUrl}/unlike/${postId}`,{} ,{ withCredentials: true });
   }
-   removeUnlikePost(postId:string):Observable<void>{
+   removeUnlikePost$(postId:string):Observable<void>{
     return this.http.put<void>(`${apiUrl}/removeunlike/${postId}`,{},{ withCredentials: true });
   }
   

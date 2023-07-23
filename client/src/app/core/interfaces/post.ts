@@ -8,4 +8,6 @@ export interface IPost extends IBase {
   text: string;
   userId: IUser;
   eventId: IEvent;
+  userLiked: boolean;
+  userUnliked: boolean;
 }

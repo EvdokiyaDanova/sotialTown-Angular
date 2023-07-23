@@ -104,11 +104,14 @@ h3 {
 
 .footer .likeIcon {
     color: green;
+    opacity: 0.5;
 }
 
 .footer .unlikeIcon {
     color: red;
-}
-.disabled{
     opacity: 0.5;
+}
+.footer .unlikeIcon.clicked,
+.footer .likeIcon.clicked{
+    opacity: 1;
 }
