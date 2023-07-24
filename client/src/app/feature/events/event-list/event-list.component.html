@@ -1,6 +1,11 @@
 <form >
 
   <input [formControl]="searchControl" type="text" placeholder="Search for posts">
+  <div>
+    <button [disabled]="currentPage === 0" (click)="goOnePageBack()">Previos Page</button>
+    Showing "x" of "{{totalResults}}" pages
+    <button (click)="goOnePageForward()">Next Page</button>
+  </div>
 </form>
 
 <div *ngIf="eventList">

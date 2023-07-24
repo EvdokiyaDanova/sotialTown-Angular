@@ -31,7 +31,7 @@ export class EventListItemComponent implements OnChanges {
         if(!currentUser || !this.event){
           return false;
         }
-        console.log("event-list" , this.event);
+     //   console.log("event-list" , this.event);
         
         return !this.event.subscribers.includes(currentUser._id);
       })

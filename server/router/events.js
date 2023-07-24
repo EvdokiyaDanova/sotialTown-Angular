@@ -6,6 +6,7 @@ const { eventController, postController } = require('../controllers');
 // middleware that is specific to this router
 
 router.get('/', eventController.getEvents);
+router.get('/list', eventController.getEventsList);
 router.post('/', auth(), eventController.createEvent);
 
 router.get('/:eventId', eventController.getEvent);

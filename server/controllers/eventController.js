@@ -10,6 +10,24 @@ function getEvents(req, res, next) {
         .catch(next);
 }
 
+function getEventsList(req, res, next) {
+    const title = req.query.title || '';
+    const startIndex = +req.query.startIndex || 0;
+    const limit = +req.query.limit || Number.MAX_SAFE_INTEGER;
+
+    Promise.all([
+        eventModel.find({ eventName: { $regex: title, $options: 'i' } })
+            .skip(startIndex)
+            .limit(limit)
+            .populate('userId'),
+        eventModel.find({ eventName: { $regex: title, $options: 'i' } })
+            .countDocuments()
+    ])
+        .then(([results, totalResults]) => res.json({ results, totalResults }))
+        .catch(next);
+}
+
+
 function getEvent(req, res, next) {
     const { eventId } = req.params;
 
@@ -23,6 +41,11 @@ function getEvent(req, res, next) {
         .then(event => res.json(event))
         .catch(next);
 }
+
+
+
+
+
 
 function createEvent(req, res, next) {
     const { eventName, postText } = req.body;
@@ -59,6 +82,7 @@ function unsubscribe(req, res, next) {
 
 module.exports = {
     getEvents,
+    getEventsList,
     createEvent,
     getEvent,
     subscribe,

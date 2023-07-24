@@ -3,7 +3,7 @@
     <div class="event-title">
         <div class="event-name-wrapper">
             <div class="event-name">
-                <h2>{{event.eventName}}</h2>
+                <h2>{{event.eventName}} {{isUserOwner}}</h2>
                 <p>Date: <time> {{event.created_at | date:'short'}}</time></p>
             </div>
             <div class="subscribers">

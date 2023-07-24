@@ -7,6 +7,11 @@ import { map } from 'rxjs/operators';
 
 const apiUrl = environment.apiUrl;
 
+export interface PaginatedResponse<T>{
+  results: T[];
+  totalResults: number;
+}
+
 @Injectable()
 export class EventService {
 
@@ -27,16 +32,75 @@ export class EventService {
     );
   }
   loadEventList(searchTerm: string = ''): Observable<IEvent[]> {
-    return this.http.get<IEvent[]>(`${apiUrl}/events?title=${searchTerm}`, {
+    return this.http.get<IEvent[]>(`${apiUrl}/events?title=${searchTerm}`, {}); }
+
+
+    getPaginatedFavoriteEventsForUser(userId: string, searchTerm: string = '', startIndex:number, limit:number): Observable<PaginatedResponse<IEvent>> {
+      return this.http.get<PaginatedResponse<IEvent>>(`${apiUrl}/events/list`, {
+        params: new HttpParams({
+          fromObject: {
+            title: searchTerm,
+            startIndex,
+            limit
+          }
+        })
+      }).pipe(
+        map((response: PaginatedResponse<IEvent>) => {
+          const filteredEvents = response.results.filter((event) => event.subscribers.includes(userId));
+          return {
+            results: filteredEvents,
+            totalResults: filteredEvents.length
+          };
+        })
+      );
+    }
+
+
+    getPaginatedCreatedEventsByUser(userId: string, searchTerm: string = '', startIndex:number, limit:number): Observable<PaginatedResponse<IEvent>> {
+      return this.http.get<PaginatedResponse<IEvent>>(`${apiUrl}/events/list`, {
+        params: new HttpParams({
+          fromObject: {
+            title: searchTerm,
+            startIndex,
+            limit
+          }
+        })
+      }).pipe(
+        map((response: PaginatedResponse<IEvent>) => {
+          const filteredEvents = response.results.filter((event) => event.userId?._id === userId);
+          return {
+            results: filteredEvents,
+            totalResults: filteredEvents.length
+          };
+        })
+      );
+    }
+    
+    
+    
+    
+    
+    
+    
+    
+
+  loadEventPaginatedList(searchTerm: string = '', startIndex:number, limit:number): Observable<PaginatedResponse<IEvent>> {
+   console.log ('Load EVA',searchTerm);
+
+
+    return this.http.get<PaginatedResponse<IEvent>>(`${apiUrl}/events/list`, {
       params: new HttpParams({
         fromObject: {
+          title: searchTerm,
+          startIndex,
+          limit
         }
       })
     });
   }
 
-  loadEventById(id: string): Observable<IEvent<IPost>> {
-    return this.http.get<IEvent<IPost>>(`${apiUrl}/events/${id}`);
+  loadEventById(id: string): Observable<IEvent<IPost, string>> {
+    return this.http.get<IEvent<IPost, string>>(`${apiUrl}/events/${id}`);
   }
 
 
@@ -46,21 +110,5 @@ export class EventService {
   unsubscribe(eventId: string): Observable<IEvent> {
     return this.http.put<IEvent>(`${apiUrl}/events/${eventId}/unsubscribe`,{},{ withCredentials: true });
   }
-
-
-
-  // getFavoriteEvents(searchTerm: string = ''): Observable<IEvent[]> {
-  //   return this.http.get<IEvent[]>(`${apiUrl}/events?title=${searchTerm}`, {
-  //     params: new HttpParams({
-  //       fromObject: {
-  //       }
-  //     })
-  //   });
-  //   // Тук трябва да направите заявка към сървъра и да филтрирате само събитията, за които текущият потребител е абониран.
-  //   // Например, можете да извлечете списъка с всички събития и след това да го филтрирате с Array.filter() или други подобни методи.
-  //   // Върнете само списъка със събитията, за които потребителят е абониран.
-  // }
-
- 
 
 }

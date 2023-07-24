@@ -61,7 +61,7 @@ export class RegisterComponent implements OnInit {
     }
 
     this.authService.register$(body).subscribe(() => {
-      this.router.navigate(['/home']);
+      this.router.navigate(['/events']);
     })
   }
 }

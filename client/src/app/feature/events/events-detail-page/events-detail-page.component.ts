@@ -15,10 +15,11 @@ import { mergeMap, tap } from 'rxjs/operators';
   styleUrls: ['./events-detail-page.component.css']
 })
 export class EventsDetailPageComponent implements OnInit {
-  event: IEvent<IPost>;
+  event: IEvent<IPost, string>;
   canSubscribe: boolean = false;
   currentUser?:IUser;
   canSubmitPost: boolean = false;
+  isUserOwner: boolean = false;
 
   //currentUser$: Observable<IUser> = this.authService.currentUser$;
  isLoggedIn$: Observable<boolean> = this.authService.isLoggedIn$;
@@ -48,8 +49,10 @@ export class EventsDetailPageComponent implements OnInit {
       )
     ])
     .subscribe(([event, user])=>{
+     // this.currentUser= user;
       this.event= event;
       this.canSubscribe = user && !this.event.subscribers.includes(user?._id);
+      this.isUserOwner= user && this.event.userId === user._id;
     })
   
 

@@ -20,11 +20,11 @@ import { IUser } from './user';
 
 
 // Option 2
-export interface IEvent<T = string> extends IBase {
+export interface IEvent<PostType = string,UserType = IUser> extends IBase {
   subscribers: string[];
-  posts: T[];
+  posts: PostType[];
   eventName: string;
-  userId: IUser;
+  userId: UserType;
 }
 
 // Option 3
