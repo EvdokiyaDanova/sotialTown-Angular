@@ -80,6 +80,8 @@ export class EventListComponent implements OnInit, AfterViewInit {
           //get events list and number of events from PaginatedResponse<T> interface
           this.eventList = eventList.results;
           this.totalResults = eventList.totalResults;
+          console.log("eventList ", eventList);
+          
         });
 
 
