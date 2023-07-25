@@ -1,16 +1,12 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpParams } from '@angular/common/http';
-import { IPost, IEvent } from './interfaces';
+import { IPost, IEvent, PaginatedResponse } from './interfaces';
 import { Observable } from 'rxjs';
 import { environment } from '../../environments/environment';
 import { map } from 'rxjs/operators';
 
 const apiUrl = environment.apiUrl;
 
-export interface PaginatedResponse<T>{
-  results: T[];
-  totalResults: number;
-}
 
 @Injectable()
 export class EventService {
@@ -77,13 +73,6 @@ export class EventService {
     }
     
     
-    
-    
-    
-    
-    
-    
-
   loadEventPaginatedList(searchTerm: string = '', startIndex:number, limit:number): Observable<PaginatedResponse<IEvent>> {
    console.log ('Load EVA',searchTerm);
 
