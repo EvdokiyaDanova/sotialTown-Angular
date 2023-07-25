@@ -12,6 +12,8 @@ router.post('/', auth(), eventController.createEvent);
 router.get('/:eventId', eventController.getEvent);
 router.post('/:eventId', auth(), postController.createPost);
 router.put('/:eventId', auth(), eventController.subscribe);
+router.post('/:eventId/edit', auth(), eventController.editEvent);
+router.delete('/:eventId/delete', auth(), eventController.deleteEvent);
 router.put('/:eventId/unsubscribe', auth(), eventController.unsubscribe);
 router.put('/:eventId/posts/:postId', auth(), postController.editPost);
 router.delete('/:eventId/posts/:postId', auth(), postController.deletePost);

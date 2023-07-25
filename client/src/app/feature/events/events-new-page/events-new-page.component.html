@@ -1,13 +1,14 @@
 <div class="new-event-border">
     <div class="header-background">
-        <span>New Event</span>
+        <span>{{ isEditPage ? 'Edit Event' : 'New Event' }}</span>
     </div>
     
 
-    <form #newEventForm="ngForm" (ngSubmit)="submitNewEvent(newEventForm)">
+    <!-- <form #newEventForm="ngForm" (ngSubmit)="submitNewEvent(newEventForm)">
         <div class="new-event-title">
             <label for="eventName">Title <span class="red">*</span></label>
             <input #eventName="ngModel" ngModel type="text" name="eventName" id="eventName" required minlength="5">
+         
 
             <ng-container *ngIf="eventName.touched && eventName.invalid">
                 <p *ngIf="eventName.errors.required" class="error">
@@ -30,11 +31,36 @@
                     Post must be at least 10 characters long.
                 </p>
             </ng-container>
-        </div>
+        </div> 
         <div class="new-event-buttons">
             <button type="button" (click)="navigateToHome()" class="cancel">Cancel</button>
-            <button [disabled]="newEventForm.invalid" class="public">Post</button>
+            <button [disabled]="newEventForm.invalid" class="public">{{ isEditPage ? 'Update' : 'Create' }}</button>
         </div>
 
+    </form> -->
+
+    <form #newEventForm="ngForm" (ngSubmit)="submitNewEvent(newEventForm)">
+        <div class="new-event-title">
+            <label for="eventName">Title <span class="red">*</span></label>
+            <!-- Добавете двупосочно свързване на данни чрез ngModel -->
+            <input [(ngModel)]="eventName" type="text" name="eventName" id="eventName" required minlength="5">
+
+            <!-- Проверете дали потребителят е взаимодействал с полето и дали има невалидна стойност -->
+            <ng-container *ngIf="newEventForm.controls['eventName'].touched && newEventForm.controls['eventName'].invalid">
+                <p *ngIf="newEventForm.controls['eventName'].errors.required" class="error">
+                    Event name is required.
+                </p>
+                <p *ngIf="newEventForm.controls['eventName'].errors.minlength" class="error">
+                    Event name must be at least 5 characters long.
+                </p>
+            </ng-container>
+        </div>
+
+        <!-- ... -->
+
+        <div class="new-event-buttons">
+            <button type="button" (click)="navigateToHome()" class="cancel">Cancel</button>
+            <button [disabled]="newEventForm.invalid" class="public">{{ isEditPage ? 'Update' : 'Create' }}</button>
+        </div>
     </form>
 </div>

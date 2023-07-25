@@ -11,6 +11,8 @@
                 <ng-container *ngIf="(isLoggedIn$ | async)">
                     <button (click) = 'subscribe()' *ngIf="canSubscribe" class="subscribe">Subscribe</button>
                     <button (click) = 'unsubscribe()' *ngIf="!canSubscribe" class="unsubscribe">Unsubscribe</button>
+                    <button [routerLink]="['/events', event._id, 'edit']" *ngIf="isUserOwner" class="">Edit</button>
+                    <button (click) = 'deleteEvent()' *ngIf="isUserOwner" class="">Delete</button>
                 </ng-container>
             </div>
         </div>

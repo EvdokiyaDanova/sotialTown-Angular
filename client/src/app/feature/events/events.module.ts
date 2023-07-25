@@ -13,6 +13,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { EventsFavoritePageComponent } from './events-favorite-page/events-favorite-page.component';
 import { EventsMyeventsPageComponent } from './events-myevents-page/events-myevents-page.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { EventsEditPageComponent } from './events-edit-page/events-edit-page.component';
 
 @NgModule({
   declarations: [
@@ -25,6 +26,7 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
     EventsNewPageComponent,
     EventsFavoritePageComponent,
     EventsMyeventsPageComponent,
+    EventsEditPageComponent,
   ],
   imports: [
     CommonModule,

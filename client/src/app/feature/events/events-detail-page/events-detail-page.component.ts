@@ -58,17 +58,13 @@ export class EventsDetailPageComponent implements OnInit {
 
   }
   postTextChanged(event: any): void {
-    //console.log("postTextChanged");
     this.canSubmitPost = event.target.value.trim() !== '';
-    //this.canSubmitPost=newPostForm.value.postText !== '';
   }
   submitNewPost(eventId: string, newPostForm: NgForm): void {
-   // console.log(newPostForm.value);
     if(this.canSubmitPost){
       this.postService.addPost$(eventId, newPostForm.value).subscribe({
         next: (post) => {
           newPostForm.reset(); 
-         //this.loadPostList(eventId); 
         },
         error: (error) => {
           console.error(error);
@@ -87,5 +83,13 @@ export class EventsDetailPageComponent implements OnInit {
      this.eventService.unsubscribe(this.event._id)
     .subscribe(()=> this.refresh$.next(undefined));
   }
+  deleteEvent():void {
+    this.eventService.deleteEvent(this.event._id)
+   .subscribe(()=> this.navigateToHome());
+ }
+ navigateToHome() {
+  this.router.navigate(['/home']);
+}
+ 
 
 }

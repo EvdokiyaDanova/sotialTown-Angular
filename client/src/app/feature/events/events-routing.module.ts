@@ -34,6 +34,11 @@ const routes: Routes = [
         path: ':eventId',
         component: EventsDetailPageComponent,
     },
+    {
+        path: ':eventId/edit',
+        canActivate: [AuthGuard],
+        component: EventsNewPageComponent,
+    },
 ];
 
 export const EventsRoutingModule = RouterModule.forChild(routes);

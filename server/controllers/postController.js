@@ -93,9 +93,6 @@ function dislike(req, res, next) {
         .catch(next)
 }
 
-
-
-
 function unlike(req, res, next) {
     const { postId } = req.params;
     const { _id: userId } = req.user;

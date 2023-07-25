@@ -1,4 +1,4 @@
-const { eventModel } = require('../models');
+const { eventModel, userModel, postModel } = require('../models');
 const { newPost } = require('./postController')
 
 function getEvents(req, res, next) {
@@ -43,19 +43,16 @@ function getEvent(req, res, next) {
 }
 
 
-
-
-
-
 function createEvent(req, res, next) {
-    const { eventName, postText } = req.body;
+    const { eventName } = req.body;
     const { _id: userId } = req.user;
 
     eventModel.create({ eventName, userId, subscribers: [userId] })
-        .then(event => {
-            newPost(postText, userId, event._id)
-                .then(([_, updatedEvent]) => res.status(200).json(updatedEvent))
-        })
+    .then(event => res.json(event))
+        // .then(event => {
+        //     newPost(postText, userId, event._id)
+        //         .then(([_, updatedEvent]) => res.status(200).json(updatedEvent))
+        // })
         .catch(next);
 }
 
@@ -80,6 +77,78 @@ function unsubscribe(req, res, next) {
 }
 
 
+
+function editEvent(req, res, next) {
+    const { eventId } = req.params;
+    const { eventName } = req.body;
+    const { _id: userId } = req.user;
+
+    // if the userId is not the same as this one of the event, the post will not be updated
+    eventModel.findOneAndUpdate({ _id: eventId, userId }, { eventName: eventName }, { new: true })
+        .then(updatedEvent => {
+            if (updatedEvent) {
+                res.status(200).json(updatedEvent);
+            }
+            else {
+                res.status(401).json({ message: `Not allowed!` });
+            }
+        })
+        .catch(next);
+}
+
+
+
+
+// function deleteEvent(req, res, next) {
+//     const { eventId } = req.params;
+//     const { _id: userId } = req.user;
+
+//     Promise.all([
+//         eventModel.findOneAndDelete({ _id: eventId, userId }),
+//       //  userModel.findOneAndUpdate({ _id: userId }, { $pull: { events: eventId } }),
+//       userModel.updateMany({ 'posts.eventId': eventId }, { $pull: { 'posts.$[].eventId': eventId } }),
+//         userModel.updateMany({ events: eventId }, { $pullAll: { events: [eventId] } }),
+//         postModel.deleteMany({ eventId }) // delete all post connected with eventId
+//     ])
+//         .then(([deletedEvent, updatedUserPosts, updatedUserEvents, deletedPosts]) => {
+//             if (deletedEvent) {
+//                 res.status(200).json(deletedEvent);
+//             } else {
+//                 res.status(401).json({ message: `Not allowed!` });
+//             }
+//         })
+//         .catch(next);
+// }
+function deleteEvent(req, res, next) {
+    const { eventId } = req.params;
+    const { _id: userId } = req.user;
+
+    eventModel.findByIdAndDelete(eventId)
+        .then(deletedEvent => {
+            if (!deletedEvent) {
+                return res.status(401).json({ message: `Not allowed!` });
+            }
+
+            return userModel.updateMany(
+                { 'posts': { $in: deletedEvent.posts } }, 
+                { $pull: { 'posts': { $in: deletedEvent.posts } } }
+            );
+        })
+        .then(updatedUsers => {
+            return userModel.updateMany(
+                { 'events': eventId }, 
+                { $pull: { 'events': eventId } }
+            );
+        })
+        .then(updatedUsers => {
+            return postModel.deleteMany({ eventId });
+        })
+        .then(deletedPosts => {
+            res.status(200).json({ message: 'Event and related posts deleted successfully' });
+        })
+        .catch(next);
+}
+
 module.exports = {
     getEvents,
     getEventsList,
@@ -87,4 +156,6 @@ module.exports = {
     getEvent,
     subscribe,
     unsubscribe,
+    editEvent,
+    deleteEvent,
 }

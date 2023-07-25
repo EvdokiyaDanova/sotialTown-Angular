@@ -13,7 +13,7 @@ export class EventService {
 
   constructor(private http: HttpClient) { }
 
-  addEvent$(body: { eventName: string, postText: string }): Observable<IEvent> {
+  addEvent$(body: { eventName: string }): Observable<IEvent> {
     return this.http.post<IEvent>(`${apiUrl}/events`, body, { withCredentials: true });
   }
 
@@ -113,4 +113,10 @@ export class EventService {
     return this.http.put<IEvent>(`${apiUrl}/events/${eventId}/unsubscribe`, {}, { withCredentials: true });
   }
 
+  editEvent(eventId: string, eventName:string): Observable<IEvent> {
+    return this.http.post<IEvent>(`${apiUrl}/events/${eventId}/edit`, {eventName}, { withCredentials: true });
+  }
+  deleteEvent(eventId: string): Observable<IEvent> {
+    return this.http.delete<IEvent>(`${apiUrl}/events/${eventId}/delete`, { withCredentials: true });
+  }
 }
