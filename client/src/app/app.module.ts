@@ -16,6 +16,12 @@ import { CommonModule } from '@angular/common';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { IconService } from './core/icon.service';
 
+// import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+// import { MatButtonModule } from '@angular/material/button';
+// import { MatIconModule } from '@angular/material/icon';
+// import { MatSidenavModule } from '@angular/material/sidenav';
+// import { MatToolbarModule } from '@angular/material/toolbar';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -27,7 +33,13 @@ import { IconService } from './core/icon.service';
     CoreModule.forRoot(),
     AppRoutingModule,
     PagesModule,
-    FontAwesomeModule
+    FontAwesomeModule,
+    
+    // BrowserAnimationsModule,
+    // MatButtonModule,
+    // MatIconModule,
+    // MatSidenavModule,
+    // MatToolbarModule,
   ],
   providers: [
     {

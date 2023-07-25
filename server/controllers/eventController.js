@@ -10,21 +10,102 @@ function getEvents(req, res, next) {
         .catch(next);
 }
 
+// function getEventsList(req, res, next) {
+//     const title = req.query.title || '';
+//     const startIndex = +req.query.startIndex || 0;
+//     const limit = +req.query.limit || Number.MAX_SAFE_INTEGER;
+//         Promise.all([
+//             eventModel.find({ eventName: { $regex: title, $options: 'i' } })
+//                 .skip(startIndex)
+//                 .limit(limit)
+//                 .populate('userId'),
+//             eventModel.find({ eventName: { $regex: title, $options: 'i' } })
+//                 .countDocuments()
+//         ])
+//             .then(([results, totalResults]) => res.json({ results, totalResults }))
+//             .catch(next);
+// }
+// function getEventsList(req, res, next) {
+//     const title = req.query.title || '';
+//     const startIndex = +req.query.startIndex || 0;
+//     const limit = +req.query.limit || Number.MAX_SAFE_INTEGER;
+//     const onlyFavorites = req.query.onlyFavorites;
+//     const onlyByUser = req.query.onlyByUser;
+//     const userId = req.query.userId;
+  
+//     let query = eventModel.find({ eventName: { $regex: title, $options: 'i' } });
+  
+//     if (onlyFavorites) {
+//       query.where('subscribers').equals(userId);
+//       query
+//         .skip(startIndex)
+//         .limit(limit)
+//         .populate('userId')
+//         .exec()
+//         .then((results) => {
+//           res.json({ results, totalResults: results.length });
+//         })
+//         .catch(next);
+//     } else if (onlyByUser) {
+//       query.where('userId').equals(userId);
+//       query
+//         .skip(startIndex)
+//         .limit(limit)
+//         .populate('userId')
+//         .exec()
+//         .then((results) => {
+//           res.json({ results, totalResults: results.length });
+//         })
+//         .catch(next);
+//     } else {
+//       Promise.all([
+//         query
+//           .skip(startIndex)
+//           .limit(limit)
+//           .populate('userId')
+//           .exec(),
+//         eventModel.find({ eventName: { $regex: title, $options: 'i' } })
+//           .countDocuments()
+//           .exec()
+//       ])
+//         .then(([results, totalResults]) => {
+//           res.json({ results, totalResults });
+//         })
+//         .catch(next);
+//     }
+//   }
+  
 function getEventsList(req, res, next) {
     const title = req.query.title || '';
     const startIndex = +req.query.startIndex || 0;
     const limit = +req.query.limit || Number.MAX_SAFE_INTEGER;
+    const onlyFavorites = req.query.onlyFavorites;
+    const onlyByUser = req.query.onlyByUser;
+    const userId = req.query.userId;
+
+    let query = eventModel.find({ eventName: { $regex: title, $options: 'i' } });
+
+    if (onlyFavorites) {
+       // console.log("onlyFavorites");
+        query.where('subscribers').equals(userId);
+    }
+
+    if (onlyByUser) {
+       // console.log("onlyByUser");
+        query.where('userId').equals(userId);
+    }
 
     Promise.all([
-        eventModel.find({ eventName: { $regex: title, $options: 'i' } })
-            .skip(startIndex)
+        query.skip(startIndex)
             .limit(limit)
-            .populate('userId'),
+            .populate('userId')
+            .exec(),
         eventModel.find({ eventName: { $regex: title, $options: 'i' } })
             .countDocuments()
+            .exec()
     ])
-        .then(([results, totalResults]) => res.json({ results, totalResults }))
-        .catch(next);
+    .then(([results, totalResults]) => res.json({ results, totalResults }))
+    .catch(next);
 }
 
 

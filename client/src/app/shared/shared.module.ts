@@ -8,7 +8,7 @@ import { TimeAgoPipe } from './time-ago.pipe';
 @NgModule({
   declarations: [
     WelcomeComponent,
-    TimeAgoPipe
+    TimeAgoPipe,
   ],
   imports: [
     CommonModule

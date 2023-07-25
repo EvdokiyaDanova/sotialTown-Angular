@@ -2,7 +2,19 @@
 <header class="shadow">
   <div class="container header__container">
 
-
+    <!-- <mat-toolbar color="primary">
+      <app-hamburger-menu (toggleMenu)="sidenav.toggle()"></app-hamburger-menu>
+      toolbar element 1
+    </mat-toolbar>
+    
+    <mat-sidenav-container>
+      <mat-sidenav #sidenav>
+        mat-sidenav
+      </mat-sidenav>
+    
+      rest content
+    </mat-sidenav-container> -->
+    
     <div class="hamburger__menu menu__holder">
       <ng-container *ngIf="(isLoggedIn$ | async)">
         <li class="menu__item">
@@ -12,7 +24,7 @@
           <a href="/events/myevents" class="text__regular">My Events</a>
         </li>
         <li class="menu__item">
-          <a href="/events/favorite" class="text__regular">My Favorites</a>
+          <a href="/events/favorite" class="text__regular">Favorites</a>
         </li>
       </ng-container>
       <!-- <li>
