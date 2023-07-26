@@ -1,48 +1,49 @@
-<form class="login" [formGroup]="loginFormGroup" (ngSubmit)="handleLogin()">
-    <fieldset>
-        <h2>Login Form</h2>
+<div class="main__block margin__t margin__b">
+    <form class="login" [formGroup]="loginFormGroup" (ngSubmit)="handleLogin()">
 
-        <p *ngIf="errorMessage" class="error">{{errorMessage}}</p>
+        <h3>Login Form</h3>
 
-        <p class="field field-icon">
-            <label for="email"><span>
-                <fa-icon [icon]="icons.emailIcon"></fa-icon>
-            </span></label>
-            <input formControlName="email" type="email" name="email" id="email" placeholder="john.doe@gmail.com">
-        </p>
-        <ng-container *ngIf="loginFormGroup.controls['email'].touched && loginFormGroup.controls['email'].invalid">
-            <p *ngIf="loginFormGroup.controls['email'].errors.required" class="error">
-                Email is required!
+        <p *ngIf="errorMessage" class="error margin__t">{{errorMessage}}</p>
+        <div class=" margin__b margin__t">
+            <div class="flex__row__center">
+                <label for="email" class="icon">
+                    <fa-icon [icon]="icons.emailIcon"></fa-icon>
+                </label>
+                <input formControlName="email" type="email" name="email" id="email" placeholder="john.doe@gmail.com">
+            </div>
+            <ng-container *ngIf="loginFormGroup.controls['email'].touched && loginFormGroup.controls['email'].invalid">
+                <p *ngIf="loginFormGroup.controls['email'].errors.required" class="error">
+                    Email is required!
+                </p>
+
+                <p *ngIf="loginFormGroup.controls['email'].errors.email" class="error">
+                    Email is not valid!
+                </p>
+            </ng-container>
+        </div>
+        <div class=" margin__b">
+            <div class="flex__row__center">
+                <label for="password" class="icon">
+                    <fa-icon [icon]="icons.passwordIcon"></fa-icon>
+                </label>
+                <input formControlName="password" type="password" name="password" id="password" placeholder="******">
+            </div>
+            <ng-container
+                *ngIf="loginFormGroup.controls['password'].touched && loginFormGroup.controls['password'].invalid">
+                <p *ngIf="loginFormGroup.controls['password'].errors.required" class="error">
+                    Password is required!
+                </p>
+                <p *ngIf="loginFormGroup.controls['password'].errors.minlength" class="error">
+                    Password must be at least 5 characters!
+                </p>
+            </ng-container>
+        </div>
+        <div class="">
+            <button (click)="loginHandler()" class="btn__primary text__btn margin__b5">Login</button>
+            <p class="text-center">
+                Have an account?
+                <a class="text__sub__accent" href="/user/register">Register</a>
             </p>
-
-            <p *ngIf="loginFormGroup.controls['email'].errors.email" class="error">
-                Email is not valid!
-            </p>
-        </ng-container>
-
-        <p class="field field-icon">
-            <label for="password"><span>
-                <fa-icon [icon]="icons.passwordIcon"></fa-icon>
-            </span></label>
-            <input formControlName="password" type="password" name="password" id="password" placeholder="******">
-        </p>
-
-        <ng-container
-            *ngIf="loginFormGroup.controls['password'].touched && loginFormGroup.controls['password'].invalid">
-            <p *ngIf="loginFormGroup.controls['password'].errors.required" class="error">
-                Password is required!
-            </p>
-            <p *ngIf="loginFormGroup.controls['password'].errors.minlength" class="error">
-                Password must be at least 5 characters!
-            </p>
-        </ng-container>
-        
-        <button (click)="loginHandler()">Login</button>
-
-        <p class="text-center">
-            Have an account?
-            <a href="#">Register</a>
-        </p>
-
-    </fieldset>
-</form>
+        </div>
+    </form>
+</div>

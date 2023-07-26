@@ -1,113 +1,113 @@
-<form class="register" [formGroup]="registerFormGroup" (ngSubmit)="handleRegister()">
+<div class="main__block margin__t margin__b">
+    <form class="register" [formGroup]="registerFormGroup" (ngSubmit)="handleRegister()">
+        <h3>Registration</h3>
 
-    <fieldset>
-        <h2>Registration Fosdsdsarm</h2>
 
-        <hr>
-            <div class="account-type margin__vertical15">
-              <input type="radio" formControlName="account" value="personal" id="radioOne" />
-              <label for="radioOne" class="radio">Personal</label>
-              <input type="radio" formControlName="account" value="company" id="radioTwo" />
-              <label for="radioTwo" class="radio">Company</label>
+        <!-- type -->
+        <div class="margin__b margin__t">
+            <div class="flex__row__center">
+                <div class="account-type margin__vertical15">
+                    <input type="radio" formControlName="account" value="personal" id="radioOne" />
+                    <label for="radioOne" class="radio">Personal</label>
+                    <input type="radio" formControlName="account" value="company" id="radioTwo" />
+                    <label for="radioTwo" class="radio">Company</label>
+                </div>
             </div>
-          <hr>
-          
-
-
+        </div>
 
         <!-- username -->
-        <p class="field field-icon">
-            <label for="username"><span>
-                <fa-icon [icon]="icons.userIcon"></fa-icon>
-            </span></label>
-            <input formControlName="username"
-                [class.input-error]="registerFormGroup.controls['username'].touched && registerFormGroup.controls['username'].invalid"
-                type="text" name="username" id="username" placeholder="Johny">
-        </p>
-
-        <ng-container
-            *ngIf="registerFormGroup.controls['username'].touched && registerFormGroup.controls['username'].invalid">
-            <p *ngIf="registerFormGroup.controls['username'].errors.required" class="error">
-                Username is required!
-            </p>
-
-            <p *ngIf="registerFormGroup.controls['username'].errors.minlength" class="error">
-                Username must be at least 5 characters!
-            </p>
-        </ng-container>
-
-
-
-        <!-- email -->
-        <p class="field field-icon">
-            <label for="email">
-                <span>
-                    <fa-icon [icon]="icons.emailIcon"></fa-icon>
-                </span></label>
-            <input formControlName="email" type="email" name="email" id="email" placeholder="john.doe@gmail.com"
-                [class.input-error]="shouldShowErrorForControl('email')">
-        </p>
-
-        <ng-container
-            *ngIf="shouldShowErrorForControl('email')">
-            <p *ngIf="registerFormGroup.controls['email'].errors.required" class="error">
-                Email is required!
-            </p>
-            <p *ngIf="registerFormGroup.controls['email'].errors.email" class="error">
-                Email is not valid!
-            </p>
-        </ng-container>
-
-
-        <!-- telephone -->
-        <p class="field field-icon">
-            <label for="tel"><span>
-                <fa-icon [icon]="icons.phoneIcon"></fa-icon>
-            </span></label>
-       
-            <input type="text" name="tel" id="tel" formControlName="tel" placeholder="885 888 888">
-        </p>
-
-        <!-- password -->
-
-        <div formGroupName="passwords">
-            <p class="field field-icon">
-                <label for="password"><span>
-                    <fa-icon [icon]="icons.passwordIcon"></fa-icon>
-                </span></label>
-                <input [class.input-error]="shouldShowErrorForControl('password', passwordsGroup)" formControlName="password" type="password" name="password" id="password" placeholder="******">
-            </p>
-            
-            <ng-container *ngIf="shouldShowErrorForControl('password', passwordsGroup)">
-                <p *ngIf="passwordsGroup.controls['password'].errors.required" class="error">
-                    Password is required!
+        <div class="margin__b">
+            <div class="flex__row__center">
+                <label for="username" class="icon">
+                    <fa-icon [icon]="icons.userIcon"></fa-icon>
+                </label>
+                <input formControlName="username"
+                    [class.input-error]="registerFormGroup.controls['username'].touched && registerFormGroup.controls['username'].invalid"
+                    type="text" name="username" id="username" placeholder="Johny">
+            </div>
+            <ng-container *ngIf="registerFormGroup.controls['username'].touched && registerFormGroup.controls['username'].invalid">
+                <p *ngIf="registerFormGroup.controls['username'].errors.required" class="error">
+                    Username is required!
                 </p>
-                <p *ngIf="passwordsGroup.controls.password.errors.minlength"  class="error">
-                    Password must be at least 5 characters!
+
+                <p *ngIf="registerFormGroup.controls['username'].errors.minlength" class="error">
+                    Username must be at least 5 characters!
                 </p>
-            </ng-container>
-
-
-            <!-- rePassword -->
-            <p class="field field-icon">
-                <label for="rePassword"><span>
-                    <fa-icon [icon]="icons.passwordIcon"></fa-icon>
-                </span></label>
-                <input formControlName="rePassword" type="password" name="rePassword" id="rePassword"
-                    placeholder="******">
-            </p>
-
-            <ng-container *ngIf="shouldShowErrorForControl('rePassword', passwordsGroup)">
-                <p *ngIf="passwordsGroup.controls['rePassword'].errors.passwordMissmatch" class="error">Repeat Password does not match password!</p>
             </ng-container>
         </div>
 
-        <button [disabled]="registerFormGroup.invalid">Create Account</button>
 
-        <p class="text-center">
-            Have an account?
-            <a href="#">Log In</a>
-        </p>
+        
+        <!-- email -->
+        <div class="margin__b">
+            <div class="flex__row__center">
+                <label for="email" class="icon">
+                    <fa-icon [icon]="icons.emailIcon"></fa-icon>
+                </label>
+                <input formControlName="email" type="email" name="email" id="email" placeholder="john.doe@gmail.com"
+                    [class.input-error]="shouldShowErrorForControl('email')">
+            </div>
+            <ng-container *ngIf="shouldShowErrorForControl('email')">
+                <p *ngIf="registerFormGroup.controls['email'].errors.required" class="error">
+                    Email is required!
+                </p>
+                <p *ngIf="registerFormGroup.controls['email'].errors.email" class="error">
+                    Email is not valid!
+                </p>
+            </ng-container>
+        </div>
+        <!-- telephone -->
+        <div class="margin__b">
+            <div class="flex__row__center">
+                <label for="tel" class="icon">
+                    <fa-icon [icon]="icons.phoneIcon"></fa-icon>
+                </label>
+                <input type="text" name="tel" id="tel" formControlName="tel" placeholder="885 888 888">
+            </div>
+        </div>
+        <!-- password -->
+        <div formGroupName="passwords">
+            <div class="margin__b">
+                <div class="flex__row__center">
+                    <label for="password" class="icon">
+                        <fa-icon [icon]="icons.passwordIcon"></fa-icon>
+                    </label>
+                    <input [class.input-error]="shouldShowErrorForControl('password', passwordsGroup)"
+                        formControlName="password" type="password" name="password" id="password" placeholder="******">
+                </div>
+                <ng-container *ngIf="shouldShowErrorForControl('password', passwordsGroup)">
+                    <p *ngIf="passwordsGroup.controls['password'].errors.required" class="error">
+                        Password is required!
+                    </p>
+                    <p *ngIf="passwordsGroup.controls.password.errors.minlength" class="error">
+                        Password must be at least 5 characters!
+                    </p>
+                </ng-container>
+            </div>
+            <!-- rePassword -->
+            <div class="margin__b">
+                <div class="flex__row__center">
+                    <label for="rePassword" class="icon">
+                        <fa-icon [icon]="icons.passwordIcon"></fa-icon>
+                    </label>
+                    <input formControlName="rePassword" type="password" name="rePassword" id="rePassword"
+                        placeholder="******">
+                </div>
+                <ng-container *ngIf="shouldShowErrorForControl('rePassword', passwordsGroup)">
+                    <p *ngIf="passwordsGroup.controls['rePassword'].errors.passwordMissmatch" class="error">Repeat
+                        Password
+                        does not match password!</p>
+                </ng-container>
+            </div>
+        </div>
 
-    </fieldset>
-</form>
+        <div class="">
+            <button [disabled]="registerFormGroup.invalid" class="btn__primary text__btn margin__b5">Create
+                Account</button>
+            <p class="text-center">
+                Have an account?
+                <a class="text__sub__accent" href="/user/login">Log In</a>
+            </p>
+        </div>
+    </form>
+</div>
