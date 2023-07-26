@@ -13,8 +13,16 @@ export class EventService {
 
   constructor(private http: HttpClient) { }
 
-  addEvent$(body: { eventName: string }): Observable<IEvent> {
+  addEvent$(body: { newEventForm: any }): Observable<IEvent> {
     return this.http.post<IEvent>(`${apiUrl}/events`, body, { withCredentials: true });
+  }
+
+  editEvent(eventId: string, body: { newEventForm: any }): Observable<IEvent> {
+    return this.http.post<IEvent>(`${apiUrl}/events/${eventId}/edit`, body, { withCredentials: true });
+  }
+
+  deleteEvent(eventId: string): Observable<IEvent> {
+    return this.http.delete<IEvent>(`${apiUrl}/events/${eventId}/delete`, { withCredentials: true });
   }
 
   getFavoriteEventsForUser(userId: string, searchTerm: string = ''): Observable<IEvent[]> {
@@ -22,11 +30,13 @@ export class EventService {
       map((events) => events.filter((event) => event.subscribers.includes(userId)))
     );
   }
+
   getCreatedEventsByUser(userId: string, searchTerm: string = ''): Observable<IEvent[]> {
     return this.http.get<IEvent[]>(`${apiUrl}/events?title=${searchTerm}`).pipe(
       map((events) => events.filter((event) => event.userId._id == userId))
     );
   }
+
   loadEventList(searchTerm: string = ''): Observable<IEvent[]> {
     return this.http.get<IEvent[]>(`${apiUrl}/events?title=${searchTerm}`, {});
   }
@@ -50,18 +60,13 @@ export class EventService {
     return this.http.get<IEvent<IPost, string>>(`${apiUrl}/events/${id}`);
   }
 
-
   subscribeToEvent(eventId: string): Observable<IEvent> {
     return this.http.put<IEvent>(`${apiUrl}/events/${eventId}`, {}, { withCredentials: true });
   }
+
   unsubscribe(eventId: string): Observable<IEvent> {
     return this.http.put<IEvent>(`${apiUrl}/events/${eventId}/unsubscribe`, {}, { withCredentials: true });
   }
 
-  editEvent(eventId: string, eventName:string): Observable<IEvent> {
-    return this.http.post<IEvent>(`${apiUrl}/events/${eventId}/edit`, {eventName}, { withCredentials: true });
-  }
-  deleteEvent(eventId: string): Observable<IEvent> {
-    return this.http.delete<IEvent>(`${apiUrl}/events/${eventId}/delete`, { withCredentials: true });
-  }
+
 }

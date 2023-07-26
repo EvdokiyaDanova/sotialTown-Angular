@@ -63,22 +63,24 @@ function getEvent(req, res, next) {
 
 
 function createEvent(req, res, next) {
-    const { eventName } = req.body;
-    const { eventDate } = req.body;
-    const { eventPlace } = req.body;
-    const { eventCity } = req.body;
-    const { eventAddress } = req.body;
-    const { eventType } = req.body;
-    const { eventStartTime } = req.body;
-    const { eventDuration } = req.body;
-    const { eventIsLimitedGuest } = req.body;
-    const { eventNumberOfGuests } = req.body;
-    const { eventDescription } = req.body;
-    const { eventStaticPhoto } = req.body;
+    const {
+        eventName,
+        eventDate,
+        eventPlace,
+        eventCity,
+        eventAddress,
+        eventType,
+        eventStartTime,
+        eventDuration,
+        eventIsLimitedGuest,
+        eventNumberOfGuests,
+        eventDescription,
+        eventStaticPhoto
+    } = req.body;
 
     const { _id: userId } = req.user;
 
-    eventModel.create({ 
+    eventModel.create({
         eventName,
         eventDate,
         eventPlace,
@@ -91,15 +93,13 @@ function createEvent(req, res, next) {
         eventNumberOfGuests,
         eventDescription,
         eventStaticPhoto,
-         userId, 
-         subscribers: [userId] })
+        userId,
+        subscribers: [userId]
+    })
     .then(event => res.json(event))
-        // .then(event => {
-        //     newPost(postText, userId, event._id)
-        //         .then(([_, updatedEvent]) => res.status(200).json(updatedEvent))
-        // })
-        .catch(next);
+    .catch(next);
 }
+
 
 function subscribe(req, res, next) {
     const eventId = req.params.eventId;
@@ -124,36 +124,33 @@ function unsubscribe(req, res, next) {
 
 
 function editEvent(req, res, next) {
-    const { eventId } = req.params;
-    const { eventName } = req.body;
-    const { eventDate } = req.body;
-    const { eventPlace } = req.body;
-    const { eventCity } = req.body;
-    const { eventAddress } = req.body;
-    const { eventType } = req.body;
-    const { eventStartTime } = req.body;
-    const { eventDuration } = req.body;
-    const { eventIsLimitedGuest } = req.body;
-    const { eventNumberOfGuests } = req.body;
-    const { eventDescription } = req.body;
-    const { eventStaticPhoto } = req.body;
+    
     const { _id: userId } = req.user;
+    const { eventId } = req.params;
+
+    // Extract all the properties from req.body at once
+    const { eventName, eventDate, eventPlace, eventCity, eventAddress, eventType, eventStartTime, eventDuration, eventIsLimitedGuest, eventNumberOfGuests, eventDescription, eventStaticPhoto } = req.body;
+
+    // Create an object with all the properties to be updated
+    const updatedEvent = {
+        eventName,
+        eventDate,
+        eventPlace,
+        eventCity,
+        eventAddress,
+        eventType,
+        eventStartTime,
+        eventDuration,
+        eventIsLimitedGuest,
+        eventNumberOfGuests,
+        eventDescription,
+        eventStaticPhoto
+    };
 
     // if the userId is not the same as this one of the event, the post will not be updated
     eventModel.findOneAndUpdate(
         { _id: eventId, userId }, 
-        { eventName: eventName }, 
-        { eventDate: eventDate }, 
-        { eventPlace: eventPlace }, 
-        { eventCity: eventCity }, 
-        { eventAddress: eventAddress }, 
-        { eventType: eventType }, 
-        { eventStartTime: eventStartTime }, 
-        { eventDuration: eventDuration }, 
-        { eventIsLimitedGuest: eventIsLimitedGuest }, 
-        { eventNumberOfGuests: eventNumberOfGuests }, 
-        { eventDescription: eventDescription }, 
-        { eventStaticPhoto: eventStaticPhoto }, 
+        updatedEvent, // Pass the updatedEvent object as the second argument
         { new: true })
         .then(updatedEvent => {
             if (updatedEvent) {
@@ -165,9 +162,6 @@ function editEvent(req, res, next) {
         })
         .catch(next);
 }
-
-
-
 
 function deleteEvent(req, res, next) {
     const { eventId } = req.params;

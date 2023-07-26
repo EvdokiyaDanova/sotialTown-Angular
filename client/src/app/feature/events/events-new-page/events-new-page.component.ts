@@ -103,7 +103,7 @@ export class EventsNewPageComponent implements OnInit {
       })
   }
 
-  createEvent(newEventForm) {
+  createEvent(newEventForm:any) {
     console.log("newEventForm.value");
     console.log(newEventForm.value);
     this.eventService.addEvent$(newEventForm.value).subscribe({
@@ -117,14 +117,14 @@ export class EventsNewPageComponent implements OnInit {
     })
   }
 
-  updateEvent(eventId: string, newEventForm) {
+  updateEvent(eventId: string, newEventForm:any) {
     console.log("newEventForm.value");
     console.log(newEventForm.value);
     const eventName = newEventForm.value.eventName;
     console.log("uodate for is edited");
-    this.eventService.editEvent(eventId, eventName).subscribe({
+    this.eventService.editEvent(eventId, newEventForm.value).subscribe({
       next: (event) => {
-        console.log(event);
+        console.log(newEventForm.value);
         this.router.navigate(['/events']);
       },
       error: (error) => {
