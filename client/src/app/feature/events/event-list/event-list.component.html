@@ -3,14 +3,14 @@
   <input [formControl]="searchControl" type="text" placeholder="Search for posts">
   <div>
     <button [disabled]="currentPage === 0" (click)="goOnePageBack()">Previos Page</button>
-   <p> currentPage : {{currentPage}}</p>
+   <!-- <p> currentPage : {{currentPage}}</p>
    <p> pageSize :  {{ pageSize}}</p>
-    <p> totalResults : {{ totalResults}}</p>
+    <p> totalResults : {{ totalResults}}</p> -->
     Showing {{(currentPage * pageSize) + 1}}-{{
       (currentPage + 1) * pageSize > totalResults ? totalResults :(currentPage + 1) * pageSize
       }} of {{totalResults}} results
-    <!-- <button [disabled]="(currentPage + 1) * pageSize >= totalResults" (click)="goOnePageForward()">Next Page</button> -->
-    <button [disabled]="eventList.length === 0" (click)="goOnePageForward()">Next Page</button>
+    <button [disabled]="(currentPage + 1) * pageSize >= totalResults" (click)="goOnePageForward()">Next Page</button>
+    <!-- <button [disabled]="eventList.length === 0" (click)="goOnePageForward()">Next Page</button> -->
   </div>
 </form>
 

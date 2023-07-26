@@ -32,55 +32,37 @@ export class EventService {
   }
 
 
-  getPaginatedFavoriteEventsForUser( searchTerm: string = '', startIndex: number, limit: number,onlyFavorites:boolean,userId: string): Observable<PaginatedResponse<IEvent>> {
-    return this.http.get<PaginatedResponse<IEvent>>(`${apiUrl}/events/list`, {
-      params: new HttpParams({
-        fromObject: {
-          title: searchTerm,
-          startIndex,
-          limit,
-          onlyFavorites,
-          userId
-        }
-      })
-    }).pipe(
-      map((response: PaginatedResponse<IEvent>) => {
-        const filteredEvents = response.results.filter((event) => event.subscribers.includes(userId));
-        console.log( "onlyFavorites filteredEvents");
-        console.log( filteredEvents);
-        
-        return {
-          results: filteredEvents,
-          totalResults: filteredEvents.length
-        };
-      })
-    );
-  }
+
+//    getPaginatedFavoriteEventsForUser(searchTerm: string = '', startIndex: number, limit: number, onlyFavorites: boolean, userId: string): Observable<PaginatedResponse<IEvent>> {
+//     return this.http.get<PaginatedResponse<IEvent>>(`${apiUrl}/events/list`, {
+//         params: new HttpParams({
+//             fromObject: {
+//                 title: searchTerm,
+//                 startIndex,
+//                 limit,
+//                 onlyFavorites,
+//                 userId
+//             }
+//         })
+//     });
+// }
+
+//  getPaginatedCreatedEventsByUser(searchTerm: string = '', startIndex: number, limit: number, onlyByUser: boolean, userId: string): Observable<PaginatedResponse<IEvent>> {
+//     return this.http.get<PaginatedResponse<IEvent>>(`${apiUrl}/events/list`, {
+//         params: new HttpParams({
+//             fromObject: {
+//                 title: searchTerm,
+//                 startIndex,
+//                 limit,
+//                 onlyByUser,
+//                 userId
+//             }
+//         })
+//     });
+// }
 
 
-  getPaginatedCreatedEventsByUser( searchTerm: string = '', startIndex:number, limit:number,onlyByUser:boolean,userId: string): Observable<PaginatedResponse<IEvent>> {
-    return this.http.get<PaginatedResponse<IEvent>>(`${apiUrl}/events/list`, {
-      params: new HttpParams({
-        fromObject: {
-          title: searchTerm,
-          startIndex,
-          limit,
-          onlyByUser,
-          userId
-        }
-      })
-    }).pipe(
-      map((response: PaginatedResponse<IEvent>) => {
-        console.log ('Load EVA',response.results);
-        const filteredEvents = response.results.filter((event) => event.userId?._id === userId);
-        return {
-          results: filteredEvents,
-          totalResults: filteredEvents.length
-        };
-      })
-    );
-  }
-  loadEventPaginatedList(searchTerm: string = '', startIndex: number, limit: number,userId: string): Observable<PaginatedResponse<IEvent>> {
+  loadEventPaginatedList(searchTerm: string = '', startIndex: number, limit: number,currPage: string,userId: string): Observable<PaginatedResponse<IEvent>> {
 
     return this.http.get<PaginatedResponse<IEvent>>(`${apiUrl}/events/list`, {
       params: new HttpParams({
@@ -88,6 +70,7 @@ export class EventService {
           title: searchTerm,
           startIndex,
           limit,
+          currPage,
           userId,
         }
       })
