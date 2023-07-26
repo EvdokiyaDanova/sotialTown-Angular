@@ -14,7 +14,7 @@
       
       <div class="columns">
         <div>
-          <p>Date: <time>{{event.eventDate | date: 'yyyy-MM-dd'}}</time></p>
+          <p>Date: <time>{{event.eventDate | date: 'dd-MM-yy'}}</time></p>
           <div class="nick-name">
             <p class="text__sub__accent">Host: 
               <span *ngIf="!event.userId.username">Deleted User</span>

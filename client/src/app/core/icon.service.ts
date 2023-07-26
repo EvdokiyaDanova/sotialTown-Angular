@@ -1,7 +1,7 @@
 // icon.service.ts
 import { Injectable } from '@angular/core';
 import { library, IconDefinition } from '@fortawesome/fontawesome-svg-core';
-import { faEnvelope, faHeart, faLock, faUser, faPhone, faThumbsUp,faThumbsDown} from '@fortawesome/free-solid-svg-icons';
+import { faEnvelope, faHeart, faLock, faUser, faPhone, faThumbsUp,faThumbsDown ,faClock} from '@fortawesome/free-solid-svg-icons';
 
 @Injectable({
   providedIn: 'root'
@@ -13,7 +13,7 @@ export class IconService {
 
   private loadIcons(): void {
     // imports icons in library
-    library.add(faEnvelope, faHeart,faLock,faUser,faPhone,faThumbsUp,faThumbsDown );
+    library.add(faEnvelope, faHeart,faLock,faUser,faPhone,faThumbsUp,faThumbsDown,faClock );
   }
 
   getIcons(): { [key: string]: IconDefinition } {
@@ -25,6 +25,7 @@ export class IconService {
         phoneIcon:faPhone,
         likeIcon:faThumbsUp,
         unlikeIcon:faThumbsDown ,
+        durationIcon:faClock,
     };
   }
 }

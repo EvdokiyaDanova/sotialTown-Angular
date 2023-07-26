@@ -52,6 +52,9 @@ body {
 .margin__b{
     margin-bottom: 15px !important;
 }
+.margin__b5{
+    margin-bottom: 5px !important;
+}
 
 .flex__row__space {
     display: flex;

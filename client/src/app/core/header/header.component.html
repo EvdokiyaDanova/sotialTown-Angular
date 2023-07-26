@@ -2,7 +2,7 @@
 <header class="shadow">
   <div class="container header__container">
 
-    <!-- <mat-toolbar color="primary">
+    <mat-toolbar color="primary">
       <app-hamburger-menu (toggleMenu)="sidenav.toggle()"></app-hamburger-menu>
       toolbar element 1
     </mat-toolbar>
@@ -13,7 +13,7 @@
       </mat-sidenav>
     
       rest content
-    </mat-sidenav-container> -->
+    </mat-sidenav-container>
     
     <div class="hamburger__menu menu__holder">
       <ng-container *ngIf="(isLoggedIn$ | async)">
