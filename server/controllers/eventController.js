@@ -47,10 +47,6 @@ function getEventsList(req, res, next) {
     .catch(next);
 }
 
-
-
-
-
 function getEvent(req, res, next) {
     const { eventId } = req.params;
 
@@ -68,9 +64,35 @@ function getEvent(req, res, next) {
 
 function createEvent(req, res, next) {
     const { eventName } = req.body;
+    const { eventDate } = req.body;
+    const { eventPlace } = req.body;
+    const { eventCity } = req.body;
+    const { eventAddress } = req.body;
+    const { eventType } = req.body;
+    const { eventStartTime } = req.body;
+    const { eventDuration } = req.body;
+    const { eventIsLimitedGuest } = req.body;
+    const { eventNumberOfGuests } = req.body;
+    const { eventDescription } = req.body;
+    const { eventStaticPhoto } = req.body;
+
     const { _id: userId } = req.user;
 
-    eventModel.create({ eventName, userId, subscribers: [userId] })
+    eventModel.create({ 
+        eventName,
+        eventDate,
+        eventPlace,
+        eventCity,
+        eventAddress,
+        eventType,
+        eventStartTime,
+        eventDuration,
+        eventIsLimitedGuest,
+        eventNumberOfGuests,
+        eventDescription,
+        eventStaticPhoto,
+         userId, 
+         subscribers: [userId] })
     .then(event => res.json(event))
         // .then(event => {
         //     newPost(postText, userId, event._id)
@@ -104,10 +126,35 @@ function unsubscribe(req, res, next) {
 function editEvent(req, res, next) {
     const { eventId } = req.params;
     const { eventName } = req.body;
+    const { eventDate } = req.body;
+    const { eventPlace } = req.body;
+    const { eventCity } = req.body;
+    const { eventAddress } = req.body;
+    const { eventType } = req.body;
+    const { eventStartTime } = req.body;
+    const { eventDuration } = req.body;
+    const { eventIsLimitedGuest } = req.body;
+    const { eventNumberOfGuests } = req.body;
+    const { eventDescription } = req.body;
+    const { eventStaticPhoto } = req.body;
     const { _id: userId } = req.user;
 
     // if the userId is not the same as this one of the event, the post will not be updated
-    eventModel.findOneAndUpdate({ _id: eventId, userId }, { eventName: eventName }, { new: true })
+    eventModel.findOneAndUpdate(
+        { _id: eventId, userId }, 
+        { eventName: eventName }, 
+        { eventDate: eventDate }, 
+        { eventPlace: eventPlace }, 
+        { eventCity: eventCity }, 
+        { eventAddress: eventAddress }, 
+        { eventType: eventType }, 
+        { eventStartTime: eventStartTime }, 
+        { eventDuration: eventDuration }, 
+        { eventIsLimitedGuest: eventIsLimitedGuest }, 
+        { eventNumberOfGuests: eventNumberOfGuests }, 
+        { eventDescription: eventDescription }, 
+        { eventStaticPhoto: eventStaticPhoto }, 
+        { new: true })
         .then(updatedEvent => {
             if (updatedEvent) {
                 res.status(200).json(updatedEvent);
@@ -122,26 +169,6 @@ function editEvent(req, res, next) {
 
 
 
-// function deleteEvent(req, res, next) {
-//     const { eventId } = req.params;
-//     const { _id: userId } = req.user;
-
-//     Promise.all([
-//         eventModel.findOneAndDelete({ _id: eventId, userId }),
-//       //  userModel.findOneAndUpdate({ _id: userId }, { $pull: { events: eventId } }),
-//       userModel.updateMany({ 'posts.eventId': eventId }, { $pull: { 'posts.$[].eventId': eventId } }),
-//         userModel.updateMany({ events: eventId }, { $pullAll: { events: [eventId] } }),
-//         postModel.deleteMany({ eventId }) // delete all post connected with eventId
-//     ])
-//         .then(([deletedEvent, updatedUserPosts, updatedUserEvents, deletedPosts]) => {
-//             if (deletedEvent) {
-//                 res.status(200).json(deletedEvent);
-//             } else {
-//                 res.status(401).json({ message: `Not allowed!` });
-//             }
-//         })
-//         .catch(next);
-// }
 function deleteEvent(req, res, next) {
     const { eventId } = req.params;
     const { _id: userId } = req.user;

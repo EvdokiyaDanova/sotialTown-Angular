@@ -6,6 +6,49 @@ const eventSchema = new mongoose.Schema({
         type: String,
         required: true
     },
+    eventDate: {
+        type: Date,
+        required: true
+    },
+    eventPlace: {
+        type: String,
+        required: true
+    },
+    eventCity: {
+        type: String,
+        required: true
+    },
+    eventAddress: {
+        type: String,
+        required: true
+    },
+    eventType: {
+        type: String,
+        required: true
+    },
+    eventStartTime: {
+        type: String,
+        required: true
+    },
+    eventDuration: {
+        type: Number,
+    },
+
+    eventIsLimitedGuest: {
+        type: Boolean
+    },
+    eventNumberOfGuests: {
+        type: Number,
+        required: function () { return this.isLimitedGuest === true; }
+    },
+
+    eventDescription: {
+        type: String,
+    },
+    eventStaticPhoto: {
+        type: String,
+    },
+
     subscribers: [{
         type: ObjectId,
         ref: "User"

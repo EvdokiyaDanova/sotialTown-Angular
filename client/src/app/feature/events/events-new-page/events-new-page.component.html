@@ -2,51 +2,37 @@
     <div class="header-background">
         <span>{{ isEditPage ? 'Edit Event' : 'New Event' }}</span>
     </div>
-    
 
-    <!-- <form #newEventForm="ngForm" (ngSubmit)="submitNewEvent(newEventForm)">
-        <div class="new-event-title">
-            <label for="eventName">Title <span class="red">*</span></label>
-            <input #eventName="ngModel" ngModel type="text" name="eventName" id="eventName" required minlength="5">
-         
-
-            <ng-container *ngIf="eventName.touched && eventName.invalid">
-                <p *ngIf="eventName.errors.required" class="error">
-                    Event name is required.
-                </p>
-                <p *ngIf="eventName.errors.minlength" class="error">
-                    Event name must be at least 5 characters long.
-                </p>
-            </ng-container>
-
-        </div>
-        <div class="new-event-content">
-            <label for="postText">Post <span class="red">*</span></label>
-            <textarea #postText="ngModel" type="text" name="postText" ngModel id="postText" rows="8" class="height" required minlength="10"></textarea>
-            <ng-container *ngIf="postText.touched && postText.invalid">
-                <p *ngIf="postText.errors.required" class="error">
-                    The field with your post is required.
-                </p>
-                <p *ngIf="postText.errors.minlength" class="error">
-                    Post must be at least 10 characters long.
-                </p>
-            </ng-container>
-        </div> 
-        <div class="new-event-buttons">
-            <button type="button" (click)="navigateToHome()" class="cancel">Cancel</button>
-            <button [disabled]="newEventForm.invalid" class="public">{{ isEditPage ? 'Update' : 'Create' }}</button>
-        </div>
-
-    </form> -->
 
     <form #newEventForm="ngForm" (ngSubmit)="submitNewEvent(newEventForm)">
+
+        <div class="new-event-eventType">
+            <label for="eventType">Type: <span class="red">*</span></label>
+            <!-- two way binding by ngModel -->
+            <select [(ngModel)]="eventType" name="eventType" id="eventType" required>
+                <option value="" disabled>Select Event Type</option>
+                <option value="Culture">Culture</option>
+                <option value="Volunteers">Volunteers</option>
+                <option value="Lectures and Education">Lectures and Education</option>
+                <option value="Party">Party</option>
+                <option value="Sport">Sport</option>
+                <option value="Help">Help</option>
+            </select>
+            <!-- check if field is touched or invalid -->
+            <ng-container
+                *ngIf="newEventForm.controls['eventType'].touched && newEventForm.controls['eventType'].invalid">
+                <p *ngIf="newEventForm.controls['eventType'].errors.required" class="error">
+                    Event type is required.
+                </p>
+            </ng-container>
+        </div>
+
         <div class="new-event-title">
-            <label for="eventName">Title <span class="red">*</span></label>
-            <!-- Добавете двупосочно свързване на данни чрез ngModel -->
+            <label for="eventName">Title: <span class="red">*</span></label>
             <input [(ngModel)]="eventName" type="text" name="eventName" id="eventName" required minlength="5">
 
-            <!-- Проверете дали потребителят е взаимодействал с полето и дали има невалидна стойност -->
-            <ng-container *ngIf="newEventForm.controls['eventName'].touched && newEventForm.controls['eventName'].invalid">
+            <ng-container
+                *ngIf="newEventForm.controls['eventName'].touched && newEventForm.controls['eventName'].invalid">
                 <p *ngIf="newEventForm.controls['eventName'].errors.required" class="error">
                     Event name is required.
                 </p>
@@ -56,6 +42,105 @@
             </ng-container>
         </div>
 
+        <div class="new-event-place">
+            <label for="eventPlace">Place/Spot: <span class="red">*</span></label>
+            <input [(ngModel)]="eventPlace" type="text" name="eventPlace" id="eventPlace" required minlength="1">
+
+            <ng-container *ngIf="newEventForm.controls['eventPlace'].touched && newEventForm.controls['eventPlace'].invalid">
+                <p *ngIf="newEventForm.controls['eventPlace'].errors.required" class="error">
+                    Place is required.
+                </p>
+                <p *ngIf="newEventForm.controls['eventPlace'].errors.minlength" class="error">
+                    Place must be at least 1 characters long.
+                </p>
+            </ng-container>
+        </div>
+
+        <div class="new-event-city">
+            <label for="eventCity">City: <span class="red">*</span></label>
+            <input [(ngModel)]="eventCity" type="text" name="eventCity" id="eventCity" required minlength="2">
+
+            <ng-container *ngIf="newEventForm.controls['eventCity'].touched && newEventForm.controls['eventCity'].invalid">
+                <p *ngIf="newEventForm.controls['eventCity'].errors.required" class="error">
+                    City is required.
+                </p>
+                <p *ngIf="newEventForm.controls['eventCity'].errors.minlength" class="error">
+                    City must be at least 2 characters long.
+                </p>
+            </ng-container>
+        </div>
+
+        <div class="new-event-address">
+            <label for="eventAddress">Address: <span class="red">*</span></label>
+            <input [(ngModel)]="eventAddress" type="text" name="eventAddress" id="eventAddress" required minlength="5">
+
+            <ng-container *ngIf="newEventForm.controls['eventAddress'].touched && newEventForm.controls['eventAddress'].invalid">
+                <p *ngIf="newEventForm.controls['eventAddress'].errors.required" class="error">
+                    Address is required.
+                </p>
+                <p *ngIf="newEventForm.controls['eventAddress'].errors.minlength" class="error">
+                    Address must be at least 5 characters long.
+                </p>
+            </ng-container>
+        </div>
+
+        <div class="new-event-date">
+            <label for="eventDate">Date: <span class="red">*</span></label>
+            <input [(ngModel)]="eventDate" type="date" name="eventDate" id="eventDate" required>
+
+            <ng-container *ngIf="newEventForm.controls['eventDate'].touched && newEventForm.controls['eventDate'].invalid">
+                <p *ngIf="newEventForm.controls['eventDate'].errors.required" class="error">
+                    Date is required.
+                </p>
+            </ng-container>
+        </div>
+
+        <div class="new-event-startTime">
+            <label for="eventStartTime">Start in: <span class="red">*</span></label>
+            <input [(ngModel)]="eventStartTime" type="time" name="eventStartTime" id="eventStartTime" required>
+
+            <ng-container
+                *ngIf="newEventForm.controls['eventStartTime'].touched && newEventForm.controls['eventStartTime'].invalid">
+                <p *ngIf="newEventForm.controls['eventStartTime'].errors.required" class="error">
+                    Start time is required.
+                </p>
+            </ng-container>
+        </div>
+
+        <div class="new-event-duration">
+            <label for="eventDuration">Duration: </label>
+            <input [(ngModel)]="eventDuration" type="number" name="eventDuration" id="eventDuration">
+            <span> in hours</span>
+        </div>
+
+        <div class="new-event-isLimitedGuest">
+            <label for="eventIsLimitedGuest">Limited Guests: </label>
+            <input [(ngModel)]="eventIsLimitedGuest" type="checkbox" name="eventIsLimitedGuest" id="eventIsLimitedGuest">
+        </div>
+
+        <div class="new-event-numberOfGuests" *ngIf="eventIsLimitedGuest">
+            <label for="eventNumberOfGuests">Number of Guests: <span class="red">*</span></label>
+
+            <input [(ngModel)]="eventNumberOfGuests" type="number" name="eventNumberOfGuests" id="eventNumberOfGuests" required>
+
+
+            <ng-container
+                *ngIf="newEventForm.controls['eventNumberOfGuests'].touched && newEventForm.controls['eventNumberOfGuests'].invalid">
+                <p *ngIf="newEventForm.controls['eventNumberOfGuests'].errors.required" class="error">
+                    Number of Guests is required.
+                </p>
+            </ng-container>
+        </div>
+
+        <div class="new-event-description">
+            <label for="eventDescription">Description: </label>
+            <input [(ngModel)]="eventDescription" type="text" name="eventDescription" id="eventDescription">
+        </div>
+
+        <div class="new-event-staticPhoto">
+            <label for="eventStaticPhoto">Image URL: </label>
+            <input [(ngModel)]="eventStaticPhoto" type="text" name="eventStaticPhoto" id="eventStaticPhoto">
+        </div>
         <!-- ... -->
 
         <div class="new-event-buttons">

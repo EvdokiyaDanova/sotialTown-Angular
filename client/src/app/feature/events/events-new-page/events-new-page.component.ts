@@ -14,9 +14,20 @@ export class EventsNewPageComponent implements OnInit {
 
   eventId: string | null;
   isEditPage: boolean = false;
-  eventName: string = '';
   event: IEvent<IPost, string>;
 
+  eventName: string = '';
+  eventDate: Date;
+  eventPlace: string = '';
+  eventCity: string = '';
+  eventAddress: string = '';
+  eventType: string = '';
+  eventStartTime: string = '';
+  eventDuration: number = 0;
+  eventIsLimitedGuest: boolean = false;
+  eventNumberOfGuests: number;
+  eventDescription: string = '';
+  eventStaticPhoto: string = '';
 
   constructor(
     private router: Router,
@@ -29,7 +40,7 @@ export class EventsNewPageComponent implements OnInit {
       this.eventId = params['eventId'];
       this.isEditPage = !!this.eventId;
 
-      
+
       if (this.isEditPage) {
         console.log("isEditPage ", this.isEditPage);
         this.loadEvent(this.eventId);
@@ -57,12 +68,12 @@ export class EventsNewPageComponent implements OnInit {
 
   submitNewEvent(newEventForm: NgForm) {
     if (newEventForm.valid) {
-    if (this.isEditPage) {
-      this.updateEvent(this.eventId, newEventForm);
-    } else {
-      this.createEvent(newEventForm);
+      if (this.isEditPage) {
+        this.updateEvent(this.eventId, newEventForm);
+      } else {
+        this.createEvent(newEventForm);
+      }
     }
-  }
   }
 
   loadEvent(eventId: string) {
@@ -97,7 +108,7 @@ export class EventsNewPageComponent implements OnInit {
   updateEvent(eventId: string, newEventForm) {
     console.log("newEventForm.value");
     console.log(newEventForm.value);
-    const eventName= newEventForm.value.eventName;
+    const eventName = newEventForm.value.eventName;
     console.log("uodate for is edited");
     this.eventService.editEvent(eventId, eventName).subscribe({
       next: (event) => {
