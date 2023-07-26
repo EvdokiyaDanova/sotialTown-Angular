@@ -30,14 +30,14 @@ export class EventListComponent implements OnInit, AfterViewInit {
   // }
 
 
-  
+
   private pageChange$ = new BehaviorSubject(undefined);
 
   eventList: IEvent[];
 
   readonly pageSize = 2;
   currentPage: number = 0;
-  totalResults:number=0;
+  totalResults: number = 0;
 
   searchControl = new FormControl('');
 
@@ -61,8 +61,8 @@ export class EventListComponent implements OnInit, AfterViewInit {
     this.route.url.subscribe((segments) => {
       console.log("segments ", segments);
       this.pageName = segments[0]?.path;
-        console.log("this.pageName ", this.pageName);
-        //this.totalResults = 0;
+      console.log("this.pageName ", this.pageName);
+      //this.totalResults = 0;
 
 
 
@@ -84,12 +84,12 @@ export class EventListComponent implements OnInit, AfterViewInit {
           this.eventList = eventList.results;
           this.totalResults = eventList.totalResults;
           console.log("eventList ", eventList);
-          
+
         });
 
 
 
-// WITHOUT PAGINATION ONINIT FUNC
+      // WITHOUT PAGINATION ONINIT FUNC
       // this.searchControl.valueChanges
       //   .pipe(
       //     debounceTime(300),
@@ -105,22 +105,16 @@ export class EventListComponent implements OnInit, AfterViewInit {
 
   loadEventList(): Observable<PaginatedResponse<IEvent>> {
     const searchTerm = this.searchControl.value;
-    let currPage:string= "";
+    let currPage: string = "";
     if (this.pageName === "favorite") {
-       currPage= "favorite";
-     // console.log('isFavoritePage');
-     // return this.eventService.getPaginatedFavoriteEventsForUser( searchTerm,this.currentPage *this.pageSize , this.pageSize,onlyFavorites ,this.userId);
-    } 
-     if (this.pageName === "myevents") {
-       currPage= "myevents";
-     // console.log('isMyEventsPage');
-    //  return this.eventService.getPaginatedCreatedEventsByUser(searchTerm,this.currentPage *this.pageSize , this.pageSize,onlyByUser,this.userId);
-    } 
-     // console.log('isEventsPage');
-      return this.eventService.loadEventPaginatedList(searchTerm,this.currentPage *this.pageSize , this.pageSize,currPage,this.userId);
-    
+      currPage = "favorite";
+    }
+    if (this.pageName === "myevents") {
+      currPage = "myevents";
+    }
+    return this.eventService.loadEventPaginatedList(searchTerm, this.currentPage * this.pageSize, this.pageSize, currPage, this.userId);
   }
-// WITHOUT PAGINATION LOAD PAGES FUNC
+  // WITHOUT PAGINATION LOAD PAGES FUNC
   // loadEventList(): Observable<IEvent[]> {
   //   const searchTerm = this.searchControl.value;
   //   if (this.pageName === "favorite") {
@@ -142,9 +136,9 @@ export class EventListComponent implements OnInit, AfterViewInit {
     this.currentPage--;
     this.pageChange$.next(undefined);
   }
-  
+
   goOnePageForward(): void {
-    console.log ('ntext') ;
+    console.log('ntext');
     this.currentPage++;
     this.pageChange$.next(undefined);
   }

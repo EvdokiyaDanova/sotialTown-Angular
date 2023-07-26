@@ -31,37 +31,6 @@ export class EventService {
     return this.http.get<IEvent[]>(`${apiUrl}/events?title=${searchTerm}`, {});
   }
 
-
-
-//    getPaginatedFavoriteEventsForUser(searchTerm: string = '', startIndex: number, limit: number, onlyFavorites: boolean, userId: string): Observable<PaginatedResponse<IEvent>> {
-//     return this.http.get<PaginatedResponse<IEvent>>(`${apiUrl}/events/list`, {
-//         params: new HttpParams({
-//             fromObject: {
-//                 title: searchTerm,
-//                 startIndex,
-//                 limit,
-//                 onlyFavorites,
-//                 userId
-//             }
-//         })
-//     });
-// }
-
-//  getPaginatedCreatedEventsByUser(searchTerm: string = '', startIndex: number, limit: number, onlyByUser: boolean, userId: string): Observable<PaginatedResponse<IEvent>> {
-//     return this.http.get<PaginatedResponse<IEvent>>(`${apiUrl}/events/list`, {
-//         params: new HttpParams({
-//             fromObject: {
-//                 title: searchTerm,
-//                 startIndex,
-//                 limit,
-//                 onlyByUser,
-//                 userId
-//             }
-//         })
-//     });
-// }
-
-
   loadEventPaginatedList(searchTerm: string = '', startIndex: number, limit: number,currPage: string,userId: string): Observable<PaginatedResponse<IEvent>> {
 
     return this.http.get<PaginatedResponse<IEvent>>(`${apiUrl}/events/list`, {
