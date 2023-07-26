@@ -4,7 +4,7 @@ import { AuthService } from 'src/app/auth.service';
 import { UserService } from 'src/app/core/user.service';
 import { IEvent } from '../../../core/interfaces';
 import { map } from 'rxjs/operators';
-import { faHeart } from '@fortawesome/free-solid-svg-icons';
+import { IconService } from 'src/app/core/icon.service';
 
 @Component({
   selector: 'app-event-list-item',
@@ -12,14 +12,18 @@ import { faHeart } from '@fortawesome/free-solid-svg-icons';
   styleUrls: ['./event-list-item.component.css']
 })
 export class EventListItemComponent implements OnChanges {
-  favorite = faHeart;
+  icons: { [key: string]: any };
 
   isLoggedIn$: Observable<boolean> = this.authService.isLoggedIn$;
   canSubscribe$: Observable<boolean>;
 
   @Input() event: IEvent;
 
-  constructor(private authService: AuthService) { }
+  constructor(
+    private authService: AuthService,
+    private iconService: IconService) { 
+      this.icons = this.iconService.getIcons();
+    }
   // ngOnInit():void{
   //   console.log('event', this.event.eventName);
   // }

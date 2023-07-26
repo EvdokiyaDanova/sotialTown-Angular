@@ -1,21 +1,20 @@
 <div class="welcome">
-    <h3>Welcome!</h3>
-    <p>SoftUni forum is a place, where you can post your questions, comment, and discuss problems, which
-        you have in your programming language or in your study in SoftUni.</p>
-    <div class="logged" *ngIf="!isLoggedIn">
-        <ul>
-            <li>
-                <a href="#">
-                    <i class="fas fa-sign-in-alt"></i>
-                    Login
-                </a>
-            </li>
-            <li>
-                <a href="#">
-                    <i class="fas fa-user-plus"></i>
-                    Register
-                </a>
-            </li>
-        </ul>
-    </div>
-</div>   
+    <h1 class="text__purple margin__t margin__b">Welcome to SotiacTown</h1>
+    <p>Discover the right event for you or create your one</p>
+    <ul class="flex__row__start margin__t" *ngIf="isLoggedIn">
+        <li class="menu__item">
+            <a href="/events" class="text__regular text__purple">Events</a>
+          </li>
+          <li class="menu__item margin__l">
+            <a href="/events/new" class="text__regular text__purple">New Event</a>
+          </li>
+    </ul>
+    <ul class="flex__row__start margin__t" *ngIf="!isLoggedIn">
+        <li class="menu__item">
+            <a href="/user/login" class="text__regular text__purple">Login</a>
+          </li>
+          <li class="menu__item margin__l">
+            <a href="/user/register" class="text__regular text__purple">Register</a>
+          </li>
+    </ul>
+</div>

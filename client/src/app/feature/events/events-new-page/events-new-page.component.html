@@ -1,12 +1,12 @@
-<div class="new-event-border">
+<div class="new-event-border main__block margin__t margin__b">
     <div class="header-background">
-        <span>{{ isEditPage ? 'Edit Event' : 'New Event' }}</span>
+        <h4 class="text__purple">{{ isEditPage ? 'Edit Event' : 'New Event' }}</h4>
     </div>
 
 
     <form #newEventForm="ngForm" (ngSubmit)="submitNewEvent(newEventForm)">
 
-        <div class="new-event-eventType">
+        <div class="new-event-eventType flex__column__start">
             <label for="eventType">Type: <span class="red">*</span></label>
             <!-- two way binding by ngModel -->
             <select [(ngModel)]="eventType" name="eventType" id="eventType" required>
@@ -27,7 +27,7 @@
             </ng-container>
         </div>
 
-        <div class="new-event-title">
+        <div class="new-event-title margin__t flex__column__start">
             <label for="eventName">Title: <span class="red">*</span></label>
             <input [(ngModel)]="eventName" type="text" name="eventName" id="eventName" required minlength="5">
 
@@ -42,7 +42,7 @@
             </ng-container>
         </div>
 
-        <div class="new-event-place">
+        <div class="new-event-place margin__t flex__column__start">
             <label for="eventPlace">Place/Spot: <span class="red">*</span></label>
             <input [(ngModel)]="eventPlace" type="text" name="eventPlace" id="eventPlace" required minlength="1">
 
@@ -56,7 +56,7 @@
             </ng-container>
         </div>
 
-        <div class="new-event-city">
+        <div class="new-event-city margin__t flex__column__start">
             <label for="eventCity">City: <span class="red">*</span></label>
             <input [(ngModel)]="eventCity" type="text" name="eventCity" id="eventCity" required minlength="2">
 
@@ -70,7 +70,7 @@
             </ng-container>
         </div>
 
-        <div class="new-event-address">
+        <div class="new-event-address margin__t flex__column__start">
             <label for="eventAddress">Address: <span class="red">*</span></label>
             <input [(ngModel)]="eventAddress" type="text" name="eventAddress" id="eventAddress" required minlength="5">
 
@@ -84,7 +84,7 @@
             </ng-container>
         </div>
 
-        <div class="new-event-date">
+        <div class="new-event-date margin__t flex__column__start">
             <label for="eventDate">Date: <span class="red">*</span></label>
             <input [(ngModel)]="eventDate" type="date" name="eventDate" id="eventDate" required>
 
@@ -95,7 +95,7 @@
             </ng-container>
         </div>
 
-        <div class="new-event-startTime">
+        <div class="new-event-startTime margin__t flex__column__start">
             <label for="eventStartTime">Start in: <span class="red">*</span></label>
             <input [(ngModel)]="eventStartTime" type="time" name="eventStartTime" id="eventStartTime" required>
 
@@ -107,18 +107,18 @@
             </ng-container>
         </div>
 
-        <div class="new-event-duration">
+        <div class="new-event-duration margin__t flex__column__start">
             <label for="eventDuration">Duration: </label>
             <input [(ngModel)]="eventDuration" type="number" name="eventDuration" id="eventDuration">
             <span> in hours</span>
         </div>
 
-        <div class="new-event-isLimitedGuest">
+        <div class="new-event-isLimitedGuest margin__t flex__column__start">
             <label for="eventIsLimitedGuest">Limited Guests: </label>
             <input [(ngModel)]="eventIsLimitedGuest" type="checkbox" name="eventIsLimitedGuest" id="eventIsLimitedGuest">
         </div>
 
-        <div class="new-event-numberOfGuests" *ngIf="eventIsLimitedGuest">
+        <div class="new-event-numberOfGuests margin__t flex__column__start" *ngIf="eventIsLimitedGuest">
             <label for="eventNumberOfGuests">Number of Guests: <span class="red">*</span></label>
 
             <input [(ngModel)]="eventNumberOfGuests" type="number" name="eventNumberOfGuests" id="eventNumberOfGuests" required>
@@ -132,20 +132,20 @@
             </ng-container>
         </div>
 
-        <div class="new-event-description">
+        <div class="new-event-description margin__t flex__column__start">
             <label for="eventDescription">Description: </label>
             <input [(ngModel)]="eventDescription" type="text" name="eventDescription" id="eventDescription">
         </div>
 
-        <div class="new-event-staticPhoto">
+        <div class="new-event-staticPhoto margin__t flex__column__start">
             <label for="eventStaticPhoto">Image URL: </label>
             <input [(ngModel)]="eventStaticPhoto" type="text" name="eventStaticPhoto" id="eventStaticPhoto">
         </div>
         <!-- ... -->
 
-        <div class="new-event-buttons">
-            <button type="button" (click)="navigateToHome()" class="cancel">Cancel</button>
-            <button [disabled]="newEventForm.invalid" class="public">{{ isEditPage ? 'Update' : 'Create' }}</button>
+        <div class="new-event-buttons margin__t">
+            <button [disabled]="newEventForm.invalid" class="public btn__primary">{{ isEditPage ? 'Update' : 'Create' }}</button>
+            <button type="button" (click)="navigateToHome()" class="cancel btn__secondary margin__l">Cancel</button>
         </div>
     </form>
 </div>

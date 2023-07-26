@@ -2,13 +2,9 @@
 aside {
   width: 29%;
   margin-top: 1em;
-  font-size: 0.8em;
 }
 
-.aside * {
-  margin: 0;
-  padding: 0;
-}
+
 
 .aside > app-post-list {
   display: block;
@@ -17,23 +13,14 @@ aside {
   padding: 0.3em 0.5em;
 }
 
-.title {
-  font-size: 1.5em;
-  border-bottom: none;
-}
+
 
 .aside .aside-event {
   margin: 1rem 0;
   padding: 0.5rem 0;
 }
 
-.aside h3 {
-  border-bottom: none;
-  border-radius: 0.3rem;
-  font-size: 1.2rem;
-  background-color: #4ebced;
-  padding-left: 0.5rem;
-}
+
 
 .aside-event+.aside-event {
   border-top: dashed 1px #999;

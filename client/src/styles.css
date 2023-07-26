@@ -4,57 +4,12 @@
 @import url('./assets/responsive.css');
 
 
-/*#region add fonts */
 
 
-@import url('https://fonts.googleapis.com/css2?family=Caveat:wght@400;500;600;700&family=Lemonada:wght@300;400;500;600;700&family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
-
-/*#endregion add fonts */
 
 
-/*#region clear default html styles*/
 
-body,
-div,
-section,
-ul,
-li,
-p,
-a,
-span,
-input,
-select,
-img,
-textarea,
-h1,
-h2,
-h3,
-h4 {
-    margin: 0px;
-    padding: 0px;
-    box-sizing: border-box;
-    text-decoration: none;
-    outline: none;
-    font-family: Helvetica, Sans-Serif;
-    list-style: none;
-}
-
-a,
-a:hover,
-a:focus,
-a:visited,
-a:active,
-button,
-button:hover,
-button:focus,
-button:visited,
-button:active {
-    text-decoration: none !important;
-    outline: none !important;
-    cursor: pointer;
-    box-shadow: none !important;
-}
-
+/*#region global styles*/
 :root {
     --white: #ffffff;
     --black: #000000;
@@ -65,15 +20,9 @@ button:active {
     --gray: #707070;
     --gray_form_back: #ebebeb;
 }
-
-
-/*#endregion clear default html styles*/
-
-
-/*#region global styles*/
-
 body {
     padding-top: 65px;
+    
 }
 
 .container {
@@ -83,12 +32,25 @@ body {
     margin-left: auto;
     margin-right: auto;
 }
+.content__min__height {
+    min-height: calc(100vh - 336px);
+}
+
 
 .margin__vertical15 {
     margin: 15px 0px;
 }
-.margin__top{
-    margin-top: 15px;
+.margin__t{
+    margin-top: 15px !important;
+}
+.margin__l{
+    margin-left: 15px !important;
+}
+.margin__r{
+    margin-right: 15px !important;
+}
+.margin__b{
+    margin-bottom: 15px !important;
 }
 
 .flex__row__space {
@@ -118,6 +80,12 @@ body {
     align-items: flex-start;
     justify-content: flex-end;
 }
+.flex__column__start {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-start;
+}
 
 .back__purple__opacity {
     background-color: var(--purple_opacity);
@@ -142,143 +110,6 @@ body {
     color: var(--purple);
 }
 
-.icon__size40 {
-    font-size: 40px;
-}
-
-h1,
-.text__h1 {
-    font-family: "Lemonada", Times, cursive;
-    font-size: 48px;
-    line-height: 56px;
-    font-weight: 900;
-    text-transform: none;
-    color: var(--black);
-}
-
-h2,
-.text__h2 {
-    font-family: "Lemonada", Times, cursive;
-    font-size: 40px;
-    line-height: 48px;
-    font-weight: 900;
-    text-transform: none;
-    color: var(--black);
-}
-
-h3,
-.text__h3 {
-    font-family: "Lemonada", Times, cursive;
-    font-size: 32px;
-    line-height: 40px;
-    font-weight: 600;
-    text-transform: none;
-    color: var(--black);
-}
-
-h4,
-.text__h4 {
-    font-family: "Lemonada", Times, cursive;
-    font-size: 24px;
-    line-height: 36px;
-    font-weight: 900;
-    text-transform: none;
-    color: var(--black);
-}
-
-p,
-li,
-a,
-option,
-ol,
-input,
-label,
-::placeholder,
-::-moz-placeholder,
-::-webkit-input-placeholder,
-.text__regular {
-    font-family: "Montserrat", Arial, sans-serif;
-    font-size: 16px;
-    line-height: 24px;
-    font-weight: normal;
-    text-transform: none;
-    color: var(--black);
-}
-
-.text__sub__normal {
-    font-family: "Montserrat", Arial, sans-serif;
-    font-size: 12px;
-    line-height: 18px;
-    font-weight: normal;
-    text-transform: none;
-    font-style: italic;
-    color: var(--black);
-}
-
-.text__sub__accent {
-    font-family: "Caveat", Times, cursive;
-    font-size: 12px;
-    line-height: 18px;
-    font-weight: 900;
-    text-transform: none;
-    color: var(--black);
-}
-
-.text__tab {
-    font-family: "Montserrat", Arial, sans-serif;
-    font-size: 18px;
-    line-height: 24px;
-    font-weight: 900;
-    text-transform: uppercase;
-    color: var(--black);
-}
-
-.text__btn {
-    font-family: "Montserrat", Arial, sans-serif;
-    font-size: 16px;
-    line-height: 24px;
-    font-weight: 600;
-    text-transform: uppercase;
-}
-
-.btn__primary {
-    height: 40px;
-    min-width: 180px;
-    text-align: center;
-    padding: auto 15px;
-    color: var(--white);
-    background-color: var(--purple);
-    border: 2px solid var(--purple);
-    border-radius: 8px;
-    transition: all 0.2s ease-in-out;
-    cursor: pointer;
-
-}
-
-.btn__primary:hover {
-    color: var(--purple);
-    background-color: var(--white);
-}
-
-.btn__secondary {
-    height: 40px;
-    min-width: 180px;
-    text-align: center;
-    padding: auto 15px;
-    color: var(--purple);
-    background-color: var(--white);
-    border: 2px solid var(--white);
-    border-radius: 8px;
-    transition: all 0.2s ease-in-out;
-    cursor: pointer;
-
-}
-
-.btn__secondary:hover {
-    color: var(--white);
-    background-color: var(--purple);
-}
-
 
 
 /*#endregion global styles*/
@@ -290,7 +121,7 @@ label,
 
 /*#region form styles*/
 
-.main-block {
+.main__block {
     max-width: 340px;
     min-height: 370px;
     padding: 25px 10px;
@@ -304,11 +135,11 @@ form {
     max-width: 100%;
 }
 
-form .btn__secondary,
+/* form .btn__secondary,
 form .btn__primary {
     min-width: 100px;
     margin-left: 15px;
-}
+} */
 
 input[type=radio],
 input[type=checkbox] {

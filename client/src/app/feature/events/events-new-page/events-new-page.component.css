@@ -4,7 +4,7 @@
 
 /* new-event */
 
-.new-event-border {
+/* .new-event-border {
     border: 1px solid;
     border-radius: 1em;
     width: 80%;
@@ -75,7 +75,7 @@ button+button {
     padding: 0.4em 1.5em;
     border: 1px solid #333333;
     border-radius: 0.3em;
-}
+} */
 
 p.error {
     text-align: left;

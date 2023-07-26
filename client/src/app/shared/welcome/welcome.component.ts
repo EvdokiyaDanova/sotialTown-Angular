@@ -14,16 +14,14 @@ export class WelcomeComponent implements OnInit, OnDestroy {
 
   private subscription: Subscription;
 
-  constructor(private authService: AuthService) { }
+  constructor(
+    private authService: AuthService) { }
 
   ngOnInit(): void {
-    //    console.log('ngOnInit#preSubscription');
     this.subscription = this.authService.isLoggedIn$.subscribe(isLoggedIn => {
-      // console.log('isLoggedIn', isLoggedIn);
       this.isLoggedIn = isLoggedIn;
     });
 
-    // console.log('ngOnInit#postSubscription');
   }
 
   ngOnDestroy(): void {

@@ -87,6 +87,18 @@ export class EventsNewPageComponent implements OnInit {
       .subscribe((event) => {
         this.event = event;
         this.eventName = event.eventName;
+        this.eventDate = event.eventDate;
+        this.eventPlace = event.eventPlace;
+        this.eventCity = event.eventCity;
+        this.eventAddress = event.eventAddress;
+        this.eventType = event.eventType;
+        this.eventStartTime = event.eventStartTime;
+        this.eventDuration = event.eventDuration;
+        this.eventIsLimitedGuest = event.eventIsLimitedGuest;
+        this.eventNumberOfGuests = event.eventNumberOfGuests;
+        this.eventDescription = event.eventDescription;
+        this.eventStaticPhoto = event.eventStaticPhoto;
+
         console.log("event ", this.event);
       })
   }

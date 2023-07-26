@@ -1,35 +1,3 @@
-/* forDelete`
-
-.aside-event {
-    margin: 1rem 0;
-    padding: 0.5rem 0;
-}
-
-h3 {
-    margin: 0;
-    padding: 0;
-
-    border-bottom: none;
-    border-radius: 0.3rem;
-    font-size: 1.2rem;
-    background-color: #4ebced;
-    padding-left: 0.5rem;
-}
-
-.aside-event+.aside-event {
-    border-top: dashed 1px #999;
-}
-
-.aside-event p {
-    text-align: right;
-}
-
-.aside-event a {
-    text-decoration: none;
-    color: inherit;
-} */
-
-
 /* comment  */
 
 .comment {
@@ -89,14 +57,10 @@ h3 {
     display: flex;
     align-items: center;
     justify-content: flex-end;
-    color: rgb(0, 128, 182);
+    padding-top: 13px;
 }
 
-.footer i {
-    background-color: #ffffff;
-    border: none;
-    cursor: pointer;
-}
+
 
 .footer p {
     padding-left: 0.5em;
@@ -111,7 +75,8 @@ h3 {
     color: red;
     opacity: 0.5;
 }
+
 .footer .unlikeIcon.clicked,
-.footer .likeIcon.clicked{
+.footer .likeIcon.clicked {
     opacity: 1;
 }

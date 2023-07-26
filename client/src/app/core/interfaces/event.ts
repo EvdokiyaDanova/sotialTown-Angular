@@ -24,6 +24,17 @@ export interface IEvent<PostType = string,UserType = IUser> extends IBase {
   subscribers: string[];
   posts: PostType[];
   eventName: string;
+  eventDate: Date;
+  eventPlace: string;
+  eventCity: string;
+  eventAddress: string ;
+  eventType: string;
+  eventStartTime: string;
+  eventDuration: number;
+  eventIsLimitedGuest: boolean;
+  eventNumberOfGuests: number;
+  eventDescription: string;
+  eventStaticPhoto: string;
   userId: UserType;
 }
 

@@ -1,16 +1,14 @@
-<form >
+<form>
 
-  <input [formControl]="searchControl" type="text" placeholder="Search for posts">
+  <input [formControl]="searchControl" type="text" placeholder="Search for Events" class="margin__t">
   <div>
-    <button [disabled]="currentPage === 0" (click)="goOnePageBack()">Previos Page</button>
-   <!-- <p> currentPage : {{currentPage}}</p>
-   <p> pageSize :  {{ pageSize}}</p>
-    <p> totalResults : {{ totalResults}}</p> -->
-    Showing {{(currentPage * pageSize) + 1}}-{{
+    <button [disabled]="currentPage === 0" (click)="goOnePageBack()" class="btn__secondary">Previos Page</button>
+    <span class="">
+      Showing {{(currentPage * pageSize) + 1}}-{{
       (currentPage + 1) * pageSize > totalResults ? totalResults :(currentPage + 1) * pageSize
       }} of {{totalResults}} results
-    <button [disabled]="(currentPage + 1) * pageSize >= totalResults" (click)="goOnePageForward()">Next Page</button>
-    <!-- <button [disabled]="eventList.length === 0" (click)="goOnePageForward()">Next Page</button> -->
+    </span>
+    <button [disabled]="(currentPage + 1) * pageSize >= totalResults" (click)="goOnePageForward()" class="btn__secondary">Next Page</button>
   </div>
 </form>
 
@@ -19,7 +17,11 @@
     <app-event-list-item *ngFor="let event of eventList" [event]="event"></app-event-list-item>
   </ng-container>
   <!-- <div *ngIf="eventList.length === 0">{{localize('no-events-message', l10n)}}</div> -->
-  <div *ngIf="eventList.length === 0">No events yet.</div>
+  <div *ngIf="eventList.length === 0" class="flex__row__center margin__t">
+    <h1 class="text__purple">
+      No events yet.
+    </h1>
+  </div>
 </div>
 <div *ngIf="!eventList">
   Loading...

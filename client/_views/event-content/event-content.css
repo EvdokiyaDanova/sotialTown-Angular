@@ -153,20 +153,20 @@
     color: red;
 }
 
-/* answer-comment */
+/* answer__comment */
 
-.answer-comment {
+.answer__comment {
     width: 100%;
     /* display: flex; */
     margin-top: 1em;
 }
 
-.answer-comment p {
+.answer__comment p {
     flex-basis: 15%;
     padding-bottom: 0.3em;
 }
 
-.answer-comment p span {
+.answer__comment p span {
     color: rgb(0, 128, 182);
     font-size: 1.2em;
 }
@@ -196,6 +196,6 @@
     cursor: pointer;
 }
 
-.comment-area {
+.comment__area {
     min-width: 100%
 }

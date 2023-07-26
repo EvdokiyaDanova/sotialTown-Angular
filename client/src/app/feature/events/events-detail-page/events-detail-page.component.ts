@@ -8,6 +8,7 @@ import { UserService } from 'src/app/core/user.service';
 import { NgForm } from '@angular/forms';
 import { PostService } from 'src/app/core/post.service';
 import { mergeMap, tap } from 'rxjs/operators';
+import { IconService } from 'src/app/core/icon.service';
 
 @Component({
   selector: 'app-events-detail-page',
@@ -15,25 +16,29 @@ import { mergeMap, tap } from 'rxjs/operators';
   styleUrls: ['./events-detail-page.component.css']
 })
 export class EventsDetailPageComponent implements OnInit {
+  icons: { [key: string]: any };
+
   event: IEvent<IPost, string>;
   canSubscribe: boolean = false;
   currentUser?:IUser;
   canSubmitPost: boolean = false;
   isUserOwner: boolean = false;
 
-  //currentUser$: Observable<IUser> = this.authService.currentUser$;
  isLoggedIn$: Observable<boolean> = this.authService.isLoggedIn$;
  refresh$= new BehaviorSubject(undefined);
 
-  //private postAddedSubscription: Subscription;
+// eventCreatorName: string;
+
 
   constructor(
     private activatedRoute: ActivatedRoute, 
     private eventService: EventService,
     private authService: AuthService,
     private router: Router, 
-    private postService: PostService
-    ) { }
+    private postService: PostService,
+    private iconService: IconService) { 
+      this.icons = this.iconService.getIcons();
+    }
 
   ngOnInit(): void {
     combineLatest([
@@ -49,8 +54,10 @@ export class EventsDetailPageComponent implements OnInit {
       )
     ])
     .subscribe(([event, user])=>{
-     // this.currentUser= user;
+    //  this.eventCreatorName = event.userId?.username || '';
       this.event= event;
+      console.log(event);
+      
       this.canSubscribe = user && !this.event.subscribers.includes(user?._id);
       this.isUserOwner= user && this.event.userId === user._id;
     })
@@ -65,6 +72,7 @@ export class EventsDetailPageComponent implements OnInit {
       this.postService.addPost$(eventId, newPostForm.value).subscribe({
         next: (post) => {
           newPostForm.reset(); 
+           this.refresh$.next(undefined);
         },
         error: (error) => {
           console.error(error);

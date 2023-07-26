@@ -39,8 +39,7 @@
 }
 
 .subscribers {
-  text-align: right;
-  flex-basis: 25%;
+  text-align: center;
 }
 
 .subscribers button {

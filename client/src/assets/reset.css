@@ -1,20 +1,47 @@
-/*
-*Removes all default whitespace
-*/
+/*#region clear default html styles*/
 
-* {
-    padding: 0;
-    margin: 0;
-}
-
-/*
-*Reset CSS model sizing calculations
-*/
-
-html {
+body,
+div,
+section,
+ul,
+li,
+p,
+a,
+span,
+input,
+select,
+img,
+textarea,
+h1,
+h2,
+h3,
+h4 {
+    margin: 0px;
+    padding: 0px;
     box-sizing: border-box;
+    text-decoration: none;
+    outline: none;
+    font-family: Helvetica, Sans-Serif;
+    list-style: none;
 }
 
-*, *:before, *:after {
-    box-sizing: inherit;
+a,
+a:hover,
+a:focus,
+a:visited,
+a:active,
+button,
+button:hover,
+button:focus,
+button:visited,
+button:active {
+    text-decoration: none !important;
+    outline: none !important;
+    cursor: pointer;
+    box-shadow: none !important;
 }
+
+
+
+
+/*#endregion clear default html styles*/
