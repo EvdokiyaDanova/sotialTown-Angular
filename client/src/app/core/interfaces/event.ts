@@ -35,6 +35,7 @@ export interface IEvent<PostType = string,UserType = IUser> extends IBase {
   eventNumberOfGuests: number;
   eventDescription: string;
   eventStaticPhoto: string;
+  eventVideoUrl: string;
   userId: UserType;
 }
 

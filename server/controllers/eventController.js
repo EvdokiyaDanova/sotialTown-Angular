@@ -1,6 +1,14 @@
 const { eventModel, userModel, postModel } = require('../models');
 const { newPost } = require('./postController')
 
+
+// Use multer for handling file uploads
+const multer = require('multer');
+const storage = multer.memoryStorage(); // Or configure as needed
+const upload = multer({ storage: storage });
+
+
+
 function getEvents(req, res, next) {
     const title = req.query.title || '';
 
@@ -15,10 +23,11 @@ function getEventsList(req, res, next) {
     const title = req.query.title || '';
     const startIndex = +req.query.startIndex || 0;
     const limit = +req.query.limit || Number.MAX_SAFE_INTEGER;
-  const currPage = req.query.currPage;
+    const currPage = req.query.currPage;
   
     const userId = req.query.userId;
-
+    
+    // create query for get a events = results
     let query = eventModel.find({ eventName: { $regex: title, $options: 'i' } });
 
     if (currPage=="favorite") {
@@ -27,7 +36,7 @@ function getEventsList(req, res, next) {
         query.where('userId').equals(userId);
     }
 
-    // create query for caunt events
+    // create query for caunt events = total results
     const countQuery = eventModel.find({ eventName: { $regex: title, $options: 'i' } });
     if (currPage=="favorite") {
         countQuery.where('subscribers').equals(userId);
@@ -78,6 +87,7 @@ function createEvent(req, res, next) {
         eventStaticPhoto
     } = req.body;
 
+    const eventVideoUrl = req.file ? req.file.location : null; // Assuming the file upload middleware adds the file location to req.file
     const { _id: userId } = req.user;
 
     eventModel.create({
@@ -93,6 +103,7 @@ function createEvent(req, res, next) {
         eventNumberOfGuests,
         eventDescription,
         eventStaticPhoto,
+        eventVideoUrl,
         userId,
         subscribers: [userId]
     })
@@ -129,7 +140,7 @@ function editEvent(req, res, next) {
     const { eventId } = req.params;
 
     // Extract all the properties from req.body at once
-    const { eventName, eventDate, eventPlace, eventCity, eventAddress, eventType, eventStartTime, eventDuration, eventIsLimitedGuest, eventNumberOfGuests, eventDescription, eventStaticPhoto } = req.body;
+    const { eventName, eventDate, eventPlace, eventCity, eventAddress, eventType, eventStartTime, eventDuration, eventIsLimitedGuest, eventNumberOfGuests, eventDescription, eventStaticPhoto,eventVideoUrl } = req.body;
 
     // Create an object with all the properties to be updated
     const updatedEvent = {
@@ -144,7 +155,8 @@ function editEvent(req, res, next) {
         eventIsLimitedGuest,
         eventNumberOfGuests,
         eventDescription,
-        eventStaticPhoto
+        eventStaticPhoto,
+        eventVideoUrl
     };
 
     // if the userId is not the same as this one of the event, the post will not be updated

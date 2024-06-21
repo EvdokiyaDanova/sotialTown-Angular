@@ -48,7 +48,9 @@ const eventSchema = new mongoose.Schema({
     eventStaticPhoto: {
         type: String,
     },
-
+    eventVideoUrl: {
+        type: String, // You can use Buffer if you want to store binary data
+    },
     subscribers: [{
         type: ObjectId,
         ref: "User"

@@ -21,7 +21,17 @@
                 </div>
             </div>
         </div>
-        <img class="event__image margin__t margin__b" src={{event.eventStaticPhoto}} />
+        <!-- TODO add background video or image -->
+        <img class="event__image margin__t margin__b" [src]="event.eventStaticPhoto" />
+        <!-- TODO make video and img gallery for every event -->
+        <!-- work with direct file urls -->
+        <!-- <video width="320" height="240" controls>
+            <source src={{event.eventVideoUrl}} type="video">
+            Your browser does not support the video tag.
+        </video> -->
+        <!-- work with youtube share urls -->
+        <iframe width="560" height="315" [src]="safeVideoUrl" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+
         <div class="event-time-info">
             <span class="text__sub__normal">on {{event.eventDate | date:'dd-MM-yy'}}, at </span>
             <span class="text__sub__normal margin__r">{{event.eventStartTime}}h </span>

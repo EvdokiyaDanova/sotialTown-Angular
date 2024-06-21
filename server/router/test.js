@@ -7,7 +7,7 @@ const utils = require('../utils')
 const data = {
     "name": "rest-api",
     "version": "1.0.0",
-    "description": "REST-api for back-end of Angular course workshop in SoftUni",
+    "description": "REST-api for back-end of Angular Sotial Town",
     "main": "index.js",
 }
 

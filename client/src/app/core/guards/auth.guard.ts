@@ -18,10 +18,9 @@ export class AuthGuard implements CanActivate {
       if (isLoggedIn) {
         return true;
       }
-
       return this.router.createUrlTree(['/user/login'], {
         queryParams: {
-          'redirect-to': '/' + route.url.map(f => f.path).join('/')
+           'redirect-to': '/' + route.url.map(f => f.path).join('/')
         }
       });
     }))

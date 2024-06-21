@@ -28,6 +28,9 @@ export class EventsNewPageComponent implements OnInit {
   eventNumberOfGuests: number;
   eventDescription: string = '';
   eventStaticPhoto: string = '';
+  eventVideoUrl: string = '';
+
+ 
 
   constructor(
     private router: Router,
@@ -46,7 +49,9 @@ export class EventsNewPageComponent implements OnInit {
         this.loadEvent(this.eventId);
       }
     });
+
   }
+
 
   // submitNewEventt(newEventForm: NgForm): void {
   //   console.log(newEventForm.value);
@@ -98,6 +103,8 @@ export class EventsNewPageComponent implements OnInit {
         this.eventNumberOfGuests = event.eventNumberOfGuests;
         this.eventDescription = event.eventDescription;
         this.eventStaticPhoto = event.eventStaticPhoto;
+        this.eventVideoUrl = event.eventVideoUrl;
+        
 
         console.log("event ", this.event);
       })

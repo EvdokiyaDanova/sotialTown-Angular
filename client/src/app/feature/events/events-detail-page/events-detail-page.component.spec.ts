@@ -2,6 +2,7 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { EventsDetailPageComponent } from './events-detail-page.component';
 
+
 describe('EventsDetailPageComponent', () => {
   let component: EventsDetailPageComponent;
   let fixture: ComponentFixture<EventsDetailPageComponent>;

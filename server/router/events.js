@@ -1,13 +1,21 @@
 const express = require('express');
 const router = express.Router();
 const { auth } = require('../utils');
+const multer = require('multer');
 const { eventController, postController } = require('../controllers');
+
+// Configure multer for file uploads
+const storage = multer.memoryStorage(); // You can configure storage as needed
+const upload = multer({ storage: storage });
 
 // middleware that is specific to this router
 
+
 router.get('/', eventController.getEvents);
 router.get('/list', eventController.getEventsList);
-router.post('/', auth(), eventController.createEvent);
+// router.post('/', auth(), eventController.createEvent);
+router.post('/', auth(), upload.single('eventVideo'), eventController.createEvent);
+
 
 router.get('/:eventId', eventController.getEvent);
 router.post('/:eventId', auth(), postController.createPost);
