@@ -71,7 +71,7 @@
         </div>
 
         <div class="new-event-country margin__t flex__column__start">
-            <label for="eventCountry">City: <span class="red">*</span></label>
+            <label for="eventCountry">Country: <span class="red">*</span></label>
             <input [(ngModel)]="eventCountry" type="text" name="eventCountry" id="eventCountry" required minlength="2">
 
             <ng-container *ngIf="newEventForm.controls['eventCountry'].touched && newEventForm.controls['eventCountry'].invalid">

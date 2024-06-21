@@ -58,7 +58,7 @@ export class EventsDetailPageComponent implements OnInit {
     .subscribe(([event, user]) => {
       this.event = event;
       this.safeVideoUrl = this.sanitizeUrl(this.event.eventVideoUrl); // Moved inside the subscription
-      this.safeMapUrl = this.sanitizeUrl(this.getMapUrl(this.event.eventAddress));  // Sanitize map URL
+      this.safeMapUrl = this.sanitizeUrl(this.getMapUrl(this.event));   // Sanitize map URL
       this.canSubscribe = user && !this.event.subscribers.includes(user?._id);
       this.isUserOwner = user && this.event.userId === user._id;
     });
@@ -105,8 +105,10 @@ export class EventsDetailPageComponent implements OnInit {
     return this.sanitizer.bypassSecurityTrustResourceUrl(url);
   }
 
-  getMapUrl(address: string): string {
-    const encodedAddress = encodeURIComponent(address);
+  getMapUrl(event: IEvent<IPost, string>): string {
+    const { eventAddress, eventCity, eventCountry } = event;
+    const fullAddress = `${eventAddress}, ${eventCity}, ${eventCountry}`;
+    const encodedAddress = encodeURIComponent(fullAddress);
     // return `https://www.google.com/maps/embed/v1/place?key=YOUR_API_KEY&q=${encodedAddress}`;
      return `https://www.google.com/maps?q=${encodedAddress}&output=embed`;
   }
