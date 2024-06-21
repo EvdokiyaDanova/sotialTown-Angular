@@ -19,6 +19,7 @@ export class EventsNewPageComponent implements OnInit {
   eventName: string = '';
   eventDate: Date;
   eventPlace: string = '';
+  eventCountry: string = '';
   eventCity: string = '';
   eventAddress: string = '';
   eventType: string = '';
@@ -94,6 +95,7 @@ export class EventsNewPageComponent implements OnInit {
         this.eventName = event.eventName;
         this.eventDate = event.eventDate;
         this.eventPlace = event.eventPlace;
+        this.eventCountry = event.eventCountry;
         this.eventCity = event.eventCity;
         this.eventAddress = event.eventAddress;
         this.eventType = event.eventType;

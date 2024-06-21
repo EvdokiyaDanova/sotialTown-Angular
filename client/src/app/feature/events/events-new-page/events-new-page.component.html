@@ -70,6 +70,21 @@
             </ng-container>
         </div>
 
+        <div class="new-event-country margin__t flex__column__start">
+            <label for="eventCountry">City: <span class="red">*</span></label>
+            <input [(ngModel)]="eventCountry" type="text" name="eventCountry" id="eventCountry" required minlength="2">
+
+            <ng-container *ngIf="newEventForm.controls['eventCountry'].touched && newEventForm.controls['eventCountry'].invalid">
+                <p *ngIf="newEventForm.controls['eventCountry'].errors.required" class="error">
+                    City is required.
+                </p>
+                <p *ngIf="newEventForm.controls['eventCountry'].errors.minlength" class="error">
+                    City must be at least 2 characters long.
+                </p>
+            </ng-container>
+        </div>
+        
+
         <div class="new-event-address margin__t flex__column__start">
             <label for="eventAddress">Address: <span class="red">*</span></label>
             <input [(ngModel)]="eventAddress" type="text" name="eventAddress" id="eventAddress" required minlength="5">

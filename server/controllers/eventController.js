@@ -76,6 +76,7 @@ function createEvent(req, res, next) {
         eventName,
         eventDate,
         eventPlace,
+        eventCountry,
         eventCity,
         eventAddress,
         eventType,
@@ -94,6 +95,7 @@ function createEvent(req, res, next) {
         eventName,
         eventDate,
         eventPlace,
+        eventCountry,
         eventCity,
         eventAddress,
         eventType,
@@ -140,13 +142,14 @@ function editEvent(req, res, next) {
     const { eventId } = req.params;
 
     // Extract all the properties from req.body at once
-    const { eventName, eventDate, eventPlace, eventCity, eventAddress, eventType, eventStartTime, eventDuration, eventIsLimitedGuest, eventNumberOfGuests, eventDescription, eventStaticPhoto,eventVideoUrl } = req.body;
+    const { eventName, eventDate, eventPlace,eventCountry, eventCity, eventAddress, eventType, eventStartTime, eventDuration, eventIsLimitedGuest, eventNumberOfGuests, eventDescription, eventStaticPhoto,eventVideoUrl } = req.body;
 
     // Create an object with all the properties to be updated
     const updatedEvent = {
         eventName,
         eventDate,
         eventPlace,
+        eventCountry,
         eventCity,
         eventAddress,
         eventType,

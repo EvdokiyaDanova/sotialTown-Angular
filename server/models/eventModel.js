@@ -14,6 +14,10 @@ const eventSchema = new mongoose.Schema({
         type: String,
         required: true
     },
+    eventCountry:{
+        type: String,
+        required: true
+    },
     eventCity: {
         type: String,
         required: true
