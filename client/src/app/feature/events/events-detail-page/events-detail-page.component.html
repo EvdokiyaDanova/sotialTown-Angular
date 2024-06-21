@@ -44,6 +44,14 @@
         <h3 class="margin__t margin__b">{{event.eventName}}</h3>
         <p class="text__regular">{{event.eventPlace}}, {{event.eventCity}}</p>
         <p class="text__sub__normal margin__b">{{event.eventAddress}}</p>
+           <!-- Google Maps iframe -->
+           <iframe
+           width="600"
+           height="450"
+           frameborder="0" style="border:0"
+           [src]="safeMapUrl"
+           allowfullscreen>
+         </iframe>
         <div>
             <p class="text__sub__accent margin__b5">Type: {{event.eventType}}</p>
         </div>

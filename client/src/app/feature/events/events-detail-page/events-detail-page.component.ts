@@ -9,7 +9,6 @@ import { NgForm } from '@angular/forms';
 import { PostService } from 'src/app/core/post.service';
 import { mergeMap, tap } from 'rxjs/operators';
 import { IconService } from 'src/app/core/icon.service';
-// Bypass Angular's URL Sanitization for videos
 import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
 
 @Component({
@@ -30,6 +29,7 @@ export class EventsDetailPageComponent implements OnInit {
   refresh$ = new BehaviorSubject(undefined);
 
   safeVideoUrl: SafeResourceUrl;
+  safeMapUrl: SafeResourceUrl;  // New property for the sanitized map URL
 
   constructor(
     private activatedRoute: ActivatedRoute, 
@@ -58,6 +58,7 @@ export class EventsDetailPageComponent implements OnInit {
     .subscribe(([event, user]) => {
       this.event = event;
       this.safeVideoUrl = this.sanitizeUrl(this.event.eventVideoUrl); // Moved inside the subscription
+      this.safeMapUrl = this.sanitizeUrl(this.getMapUrl(this.event.eventAddress));  // Sanitize map URL
       this.canSubscribe = user && !this.event.subscribers.includes(user?._id);
       this.isUserOwner = user && this.event.userId === user._id;
     });
@@ -102,5 +103,11 @@ export class EventsDetailPageComponent implements OnInit {
 
   sanitizeUrl(url: string): SafeResourceUrl {
     return this.sanitizer.bypassSecurityTrustResourceUrl(url);
+  }
+
+  getMapUrl(address: string): string {
+    const encodedAddress = encodeURIComponent(address);
+    // return `https://www.google.com/maps/embed/v1/place?key=YOUR_API_KEY&q=${encodedAddress}`;
+     return `https://www.google.com/maps?q=${encodedAddress}&output=embed`;
   }
 }
