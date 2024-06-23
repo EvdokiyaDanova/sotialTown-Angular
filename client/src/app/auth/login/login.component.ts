@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { AbstractControl, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { AbstractControl, UntypedFormBuilder, UntypedFormControl, UntypedFormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { AuthService } from 'src/app/auth.service';
 import { MessageBusService, MessageType } from 'src/app/core/message-bus.service';
@@ -22,13 +22,13 @@ export class LoginComponent implements OnInit {
   icons: { [key: string]: any };
   errorMessage: string = '';
 
-  loginFormGroup: FormGroup = this.formBuilder.group({
-    email: new FormControl('', { validators: [myRequired, emailValidator], updateOn: 'submit' }),
-    password: new FormControl(null, [Validators.required, Validators.minLength(5)])
+  loginFormGroup: UntypedFormGroup = this.formBuilder.group({
+    email: new UntypedFormControl('', { validators: [myRequired, emailValidator], updateOn: 'submit' }),
+    password: new UntypedFormControl(null, [Validators.required, Validators.minLength(5)])
   });
 
   constructor(
-    private formBuilder: FormBuilder,
+    private formBuilder: UntypedFormBuilder,
     private authService: AuthService,
     private activatedRoute: ActivatedRoute,
     private messageBus: MessageBusService,

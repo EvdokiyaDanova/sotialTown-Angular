@@ -1,5 +1,5 @@
 import { AfterViewInit, Component, OnInit } from '@angular/core';
-import { FormControl } from '@angular/forms';
+import { UntypedFormControl } from '@angular/forms';
 import { debounceTime, filter, map, mergeMap, startWith, switchMap, tap } from 'rxjs/operators';
 import { IEvent, PaginatedResponse } from '../../../core/interfaces';
 import { EventService } from '../../../core/event.service';
@@ -39,7 +39,7 @@ export class EventListComponent implements OnInit, AfterViewInit {
   currentPage: number = 0;
   totalResults: number = 0;
 
-  searchControl = new FormControl('');
+  searchControl = new UntypedFormControl('');
 
   pageName: string;
   userId: string;

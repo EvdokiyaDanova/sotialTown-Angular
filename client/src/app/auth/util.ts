@@ -1,4 +1,4 @@
-import { AbstractControl, FormGroup, ValidationErrors, ValidatorFn } from "@angular/forms";
+import { AbstractControl, UntypedFormGroup, ValidationErrors, ValidatorFn } from "@angular/forms";
 
 export function emailValidator(control: AbstractControl): ValidationErrors | null {
     const value = control.value;
@@ -35,7 +35,7 @@ export function passwordMatch(passwordFormControl: AbstractControl) {
 }
 
 export function passwordMatch2(passwordFormControl: AbstractControl): ValidationErrors | null {
-    const passwordGroup = passwordFormControl.parent as FormGroup;
+    const passwordGroup = passwordFormControl.parent as UntypedFormGroup;
 
     if (!passwordGroup) {
         return null;

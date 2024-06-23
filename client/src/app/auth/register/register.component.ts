@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { UntypedFormBuilder, UntypedFormControl, UntypedFormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AuthService } from 'src/app/auth.service';
 import { CreateUserDto, UserService } from 'src/app/core/user.service';
@@ -13,25 +13,25 @@ import { IconService } from 'src/app/core/icon.service';
 })
 export class RegisterComponent implements OnInit {
   icons: { [key: string]: any };
-  passwordControl = new FormControl(null, [Validators.required, Validators.minLength(5)]);
+  passwordControl = new UntypedFormControl(null, [Validators.required, Validators.minLength(5)]);
 
-  get passwordsGroup(): FormGroup {
-    return this.registerFormGroup.controls['passwords'] as FormGroup;
+  get passwordsGroup(): UntypedFormGroup {
+    return this.registerFormGroup.controls['passwords'] as UntypedFormGroup;
   }
 
-  registerFormGroup: FormGroup = this.formBuilder.group({
-    'account':new FormControl('personal', [ Validators.required]),
-    'username': new FormControl(null, [Validators.required, Validators.minLength(5)]),
-    'email': new FormControl(null, [Validators.required, emailValidator]),
-    'passwords': new FormGroup({
+  registerFormGroup: UntypedFormGroup = this.formBuilder.group({
+    'account':new UntypedFormControl('personal', [ Validators.required]),
+    'username': new UntypedFormControl(null, [Validators.required, Validators.minLength(5)]),
+    'email': new UntypedFormControl(null, [Validators.required, emailValidator]),
+    'passwords': new UntypedFormGroup({
       'password': this.passwordControl,
-      'rePassword': new FormControl(null, [passwordMatch(this.passwordControl)]),
+      'rePassword': new UntypedFormControl(null, [passwordMatch(this.passwordControl)]),
     }),
-    'tel': new FormControl(''),
+    'tel': new UntypedFormControl(''),
   })
 
   constructor(
-    private formBuilder: FormBuilder, 
+    private formBuilder: UntypedFormBuilder, 
     private authService: AuthService, 
     private router: Router,
     private iconService: IconService) { 
@@ -41,7 +41,7 @@ export class RegisterComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  shouldShowErrorForControl(controlName: string, sourceGroup: FormGroup = this.registerFormGroup) {
+  shouldShowErrorForControl(controlName: string, sourceGroup: UntypedFormGroup = this.registerFormGroup) {
     return sourceGroup.controls[controlName].touched && sourceGroup.controls[controlName].invalid
   }
 
