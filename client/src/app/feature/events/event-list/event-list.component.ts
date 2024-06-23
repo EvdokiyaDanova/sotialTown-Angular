@@ -43,6 +43,7 @@ export class EventListComponent implements OnInit, AfterViewInit {
 
   pageName: string;
   userId: string;
+  currentView: 'list' | 'map' = 'list';
 
 
 
@@ -141,5 +142,9 @@ export class EventListComponent implements OnInit, AfterViewInit {
     console.log('ntext');
     this.currentPage++;
     this.pageChange$.next(undefined);
+  }
+
+  setView(view: 'list' | 'map'): void {
+    this.currentView = view;
   }
 }

@@ -2,6 +2,8 @@
 @import url('./assets/layout.css');
 @import url('./assets/typography.css');
 @import url('./assets/responsive.css');
+@import "~leaflet/dist/leaflet.css";
+
 
 
 

@@ -1,8 +1,7 @@
 <form>
-
   <input [formControl]="searchControl" type="text" placeholder="Search for Events" class="margin__t">
   <div>
-    <button [disabled]="currentPage === 0" (click)="goOnePageBack()" class="btn__secondary">Previos Page</button>
+    <button [disabled]="currentPage === 0" (click)="goOnePageBack()" class="btn__secondary">Previous Page</button>
     <span class="">
       Showing {{(currentPage * pageSize) + 1}}-{{
       (currentPage + 1) * pageSize > totalResults ? totalResults :(currentPage + 1) * pageSize
@@ -12,17 +11,29 @@
   </div>
 </form>
 
-<div *ngIf="eventList">
-  <ng-container *ngIf="eventList.length > 0">
-    <app-event-list-item *ngFor="let event of eventList" [event]="event"></app-event-list-item>
-  </ng-container>
-  <!-- <div *ngIf="eventList.length === 0">{{localize('no-events-message', l10n)}}</div> -->
-  <div *ngIf="eventList.length === 0" class="flex__row__center margin__t">
-    <h1 class="text__purple">
-      No events yet.
-    </h1>
+<div>
+  <button (click)="setView('list')" [class.active]="currentView === 'list'">List View</button>
+  <button (click)="setView('map')" [class.active]="currentView === 'map'">Map View</button>
+</div>
+
+<div *ngIf="currentView === 'list'">
+  <div *ngIf="eventList">
+    <ng-container *ngIf="eventList.length > 0">
+      <app-event-list-item *ngFor="let event of eventList" [event]="event"></app-event-list-item>
+    </ng-container>
+    <div *ngIf="eventList.length === 0" class="flex__row__center margin__t">
+      <h1 class="text__purple">No events yet.</h1>
+    </div>
+  </div>
+  <div *ngIf="!eventList">
+    Loading...
   </div>
 </div>
-<div *ngIf="!eventList">
+
+
+<div *ngIf="currentView === 'map' && eventList?.length">
+  <app-event-map [events]="eventList"></app-event-map>
+</div>
+<div *ngIf="currentView === 'map' && !eventList?.length">
   Loading...
 </div>
