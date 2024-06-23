@@ -1,7 +1,7 @@
 {
   "name": "rest-api",
   "version": "1.0.0",
-  "description": "REST-api for back-end of React project",
+  "description": "REST-api for back-end of Angular project",
   "main": "index.js",
   "scripts": {
     "start": "node .",
