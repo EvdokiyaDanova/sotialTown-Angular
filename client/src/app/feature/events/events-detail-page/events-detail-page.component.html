@@ -30,7 +30,7 @@
             Your browser does not support the video tag.
         </video> -->
         <!-- work with youtube share urls -->
-        <iframe width="560" height="315" [src]="safeVideoUrl" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+        <iframe *ngIf="event.eventVideoUrl" width="560" height="315" [src]="safeVideoUrl" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
 
         <div class="event-time-info">
             <span class="text__sub__normal">on {{event.eventDate | date:'dd-MM-yy'}}, at </span>
