@@ -13,7 +13,7 @@ export class EventMapComponent implements OnInit, AfterViewInit, OnChanges {
   private markersLayer: L.LayerGroup;
 
   ngOnInit(): void {
-    console.log('ngOnInit: events', this.events);
+    console.log('!!!!!!!!ngOnInit: events', this.events);
     this.markersLayer = new L.LayerGroup();
   }
 
@@ -23,7 +23,7 @@ export class EventMapComponent implements OnInit, AfterViewInit, OnChanges {
   }
 
   ngOnChanges(changes: SimpleChanges): void {
-    console.log('ngOnChanges: events', changes.events);
+    console.log('!!!!!!!!!!!!!!!ngOnChanges: events', changes.events);
     if (changes.events && this.map) {
       this.updateMarkers();
     }
@@ -43,14 +43,23 @@ export class EventMapComponent implements OnInit, AfterViewInit, OnChanges {
     this.markersLayer.clearLayers();
 
     this.events.forEach(event => {
-      const fullAddress = `${event.eventAddress}, ${event.eventCity}, ${event.eventCountry}`;
-      this.geocodeAddress(fullAddress).then((coords) => {
-        if (coords) {
-          const marker = L.marker([coords.lat, coords.lng]);
-          marker.bindPopup(`<b>${event.eventName}</b><br>${event.eventAddress}`);
-          this.markersLayer.addLayer(marker);
-        }
-      });
+      const addressParts = [];
+      if (event.eventAddress) addressParts.push(event.eventAddress);
+      if (event.eventCity) addressParts.push(event.eventCity);
+      if (event.eventCountry) addressParts.push(event.eventCountry);
+      const fullAddress = addressParts.join(', ');
+
+      console.log(`!!!!!!!!!!!!Full address: ${fullAddress}`);
+
+      if (fullAddress) {
+        this.geocodeAddress(fullAddress).then((coords) => {
+          if (coords) {
+            const marker = L.marker([coords.lat, coords.lng]);
+            marker.bindPopup(`<b>${event.eventName}</b><br>${fullAddress}`);
+            this.markersLayer.addLayer(marker);
+          }
+        });
+      }
     });
   }
 

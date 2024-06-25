@@ -146,5 +146,6 @@ export class EventListComponent implements OnInit, AfterViewInit {
 
   setView(view: 'list' | 'map'): void {
     this.currentView = view;
+    console.log('Current View:', this.currentView);
   }
 }

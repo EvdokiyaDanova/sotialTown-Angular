@@ -14,12 +14,14 @@ import { EventsFavoritePageComponent } from './events-favorite-page/events-favor
 import { EventsMyeventsPageComponent } from './events-myevents-page/events-myevents-page.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { EventsEditPageComponent } from './events-edit-page/events-edit-page.component';
+import { EventMapComponent } from './event-map/event-map.component';
 
 @NgModule({
   declarations: [
     EventListComponent,
     AsideComponent,
     EventListItemComponent,
+    EventMapComponent,
     PostListComponent,
     EventsPageComponent,
     EventsDetailPageComponent,
