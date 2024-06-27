@@ -39,7 +39,7 @@ export class EventMapComponent implements OnInit, AfterViewInit, OnChanges {
 
     this.markersLayer.addTo(this.map);
   }
-
+// TODO PAY - with Google API key
   private updateMarkers(): void {
     this.markersLayer.clearLayers();
   
@@ -82,7 +82,7 @@ export class EventMapComponent implements OnInit, AfterViewInit, OnChanges {
       console.error('Error adding markers:', error);
     });
   }
-  
+  // TODO PAY - with Google API key
   private geocodeAddress(address: string): Promise<{ lat: number, lng: number }[]> {
     return fetch(`https://nominatim.openstreetmap.org/search?format=json&q=${encodeURIComponent(address)}`)
       .then(response => {

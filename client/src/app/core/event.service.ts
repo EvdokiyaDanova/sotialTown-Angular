@@ -1,17 +1,17 @@
-import { Injectable } from '@angular/core';
+import { Injectable,NgZone  } from '@angular/core';
 import { HttpClient, HttpParams } from '@angular/common/http';
-import { IPost, IEvent, PaginatedResponse } from './interfaces';
 import { Observable } from 'rxjs';
-import { environment } from '../../environments/environment';
 import { map } from 'rxjs/operators';
+import { environment } from '../../environments/environment';
+import { IPost, IEvent, PaginatedResponse } from './interfaces';
 
 const apiUrl = environment.apiUrl;
 
-
 @Injectable()
 export class EventService {
+  
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient, private ngZone: NgZone) { }
 
   addEvent$(body: { newEventForm: any }): Observable<IEvent> {
     return this.http.post<IEvent>(`${apiUrl}/events`, body, { withCredentials: true });
@@ -41,8 +41,7 @@ export class EventService {
     return this.http.get<IEvent[]>(`${apiUrl}/events?title=${searchTerm}`, {});
   }
 
-  loadEventPaginatedList(searchTerm: string = '', startIndex: number, limit: number,currPage: string,userId: string): Observable<PaginatedResponse<IEvent>> {
-
+  loadEventPaginatedList(searchTerm: string = '', startIndex: number, limit: number, currPage: string, userId: string): Observable<PaginatedResponse<IEvent>> {
     return this.http.get<PaginatedResponse<IEvent>>(`${apiUrl}/events/list`, {
       params: new HttpParams({
         fromObject: {
@@ -68,5 +67,26 @@ export class EventService {
     return this.http.put<IEvent>(`${apiUrl}/events/${eventId}/unsubscribe`, {}, { withCredentials: true });
   }
 
-
+  // Google Places Autocomplete
+  getPlacePredictions(query: string): Observable<any[]> {
+    const autocompleteService = new google.maps.places.AutocompleteService();
+    const request = {
+      input: query,
+      types: ['geocode'],
+      componentRestrictions: { country: 'bg' } // restrict to Bulgaria
+    };
+    
+    return new Observable((observer) => {
+      autocompleteService.getPlacePredictions(request, (predictions, status) => {
+        this.ngZone.run(() => {
+          if (status === google.maps.places.PlacesServiceStatus.OK) {
+            observer.next(predictions);
+            observer.complete();
+          } else {
+            observer.error(status);
+          }
+        });
+      });
+    });
+  }
 }

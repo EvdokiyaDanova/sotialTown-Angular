@@ -4,11 +4,11 @@ import { AsideComponent } from './aside/aside.component';
 import { PostListComponent } from './post-list/post-list.component';
 import { EventListItemComponent } from './event-list-item/event-list-item.component';
 import { EventListComponent } from './event-list/event-list.component';
+import { EventsNewPageComponent } from './events-new-page/events-new-page.component';
 import { EventsPageComponent } from './events-page/events-page.component';
 import { EventsRoutingModule } from './events-routing.module';
 import { SharedModule } from 'src/app/shared/shared.module';
 import { EventsDetailPageComponent } from './events-detail-page/events-detail-page.component';
-import { EventsNewPageComponent } from './events-new-page/events-new-page.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { EventsFavoritePageComponent } from './events-favorite-page/events-favorite-page.component';
 import { EventsMyeventsPageComponent } from './events-myevents-page/events-myevents-page.component';
@@ -17,19 +17,6 @@ import { EventsEditPageComponent } from './events-edit-page/events-edit-page.com
 import { EventMapComponent } from './event-map/event-map.component';
 
 @NgModule({
-  declarations: [
-    EventListComponent,
-    AsideComponent,
-    EventListItemComponent,
-    EventMapComponent,
-    PostListComponent,
-    EventsPageComponent,
-    EventsDetailPageComponent,
-    EventsNewPageComponent,
-    EventsFavoritePageComponent,
-    EventsMyeventsPageComponent,
-    EventsEditPageComponent,
-  ],
   imports: [
     CommonModule,
     SharedModule,
@@ -39,6 +26,20 @@ import { EventMapComponent } from './event-map/event-map.component';
     FontAwesomeModule
   ], exports: [
 
-  ]
+  ],
+  declarations: [
+    EventListComponent,
+    AsideComponent,
+    EventListItemComponent,
+    EventsNewPageComponent,
+    EventMapComponent,
+    PostListComponent,
+    EventsPageComponent,
+    EventsDetailPageComponent,
+    EventsFavoritePageComponent,
+    EventsMyeventsPageComponent,
+    EventsEditPageComponent,
+  ],
+
 })
 export class EventsModule { }

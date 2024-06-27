@@ -4,9 +4,11 @@
     </div>
 
 
+        
     <form #newEventForm="ngForm" (ngSubmit)="submitNewEvent(newEventForm)">
 
-        <div class="new-event-eventType flex__column__start">
+
+        <div class="new-event-eventType flex__column__start" *ngIf="newEventForm.controls['eventType']">
             <label for="eventType">Type: <span class="red">*</span></label>
             <!-- two way binding by ngModel -->
             <select [(ngModel)]="eventType" name="eventType" id="eventType" required>
@@ -20,7 +22,7 @@
             </select>
             <!-- check if field is touched or invalid -->
             <ng-container
-                *ngIf="newEventForm.controls['eventType'].touched && newEventForm.controls['eventType'].invalid">
+                *ngIf="newEventForm.controls['eventType']?.touched && newEventForm.controls['eventType']?.invalid">
                 <p *ngIf="newEventForm.controls['eventType'].errors.required" class="error">
                     Event type is required.
                 </p>
@@ -32,7 +34,7 @@
             <input [(ngModel)]="eventName" type="text" name="eventName" id="eventName" required minlength="5">
 
             <ng-container
-                *ngIf="newEventForm.controls['eventName'].touched && newEventForm.controls['eventName'].invalid">
+                *ngIf="newEventForm.controls['eventName']?.touched && newEventForm.controls['eventName'].invalid">
                 <p *ngIf="newEventForm.controls['eventName'].errors.required" class="error">
                     Event name is required.
                 </p>
@@ -46,7 +48,7 @@
             <label for="eventPlace">Place/Spot: <span class="red">*</span></label>
             <input [(ngModel)]="eventPlace" type="text" name="eventPlace" id="eventPlace" required minlength="1">
 
-            <ng-container *ngIf="newEventForm.controls['eventPlace'].touched && newEventForm.controls['eventPlace'].invalid">
+            <ng-container *ngIf="newEventForm.controls['eventPlace']?.touched && newEventForm.controls['eventPlace'].invalid">
                 <p *ngIf="newEventForm.controls['eventPlace'].errors.required" class="error">
                     Place is required.
                 </p>
@@ -56,7 +58,80 @@
             </ng-container>
         </div>
 
-        <div class="new-event-city margin__t flex__column__start">
+
+
+
+
+
+
+
+
+
+        <div class="new-event-country margin__t flex__column__start">
+            <label for="eventCountry">Country: <span class="red">*</span></label>
+            <input [(ngModel)]="eventCountry" (input)="getSuggestions($event.target.value)" type="text" name="eventCountry" id="eventCountry" required minlength="2">
+            <div *ngIf="addressSuggestions.length > 0" class="suggestions">
+              <ul>
+                <li *ngFor="let suggestion of addressSuggestions" (click)="selectSuggestion(suggestion)">
+                  {{ suggestion.description }}
+                </li>
+              </ul>
+            </div>
+          
+            <ng-container *ngIf="newEventForm.controls['eventCountry']?.touched && newEventForm.controls['eventCountry'].invalid">
+              <p *ngIf="newEventForm.controls['eventCountry'].errors.required" class="error">
+                Country is required.
+              </p>
+              <p *ngIf="newEventForm.controls['eventCountry'].errors.minlength" class="error">
+                Country must be at least 2 characters long.
+              </p>
+            </ng-container>
+          </div>
+          
+          <div class="new-event-city margin__t flex__column__start">
+            <label for="eventCity">City: <span class="red">*</span></label>
+            <input [(ngModel)]="eventCity" (input)="getSuggestions($event.target.value)" type="text" name="eventCity" id="eventCity" required minlength="2">
+            <div *ngIf="addressSuggestions.length > 0" class="suggestions">
+              <ul>
+                <li *ngFor="let suggestion of addressSuggestions" (click)="selectSuggestion(suggestion)">
+                  {{ suggestion.description }}
+                </li>
+              </ul>
+            </div>
+          
+            <ng-container *ngIf="newEventForm.controls['eventCity']?.touched && newEventForm.controls['eventCity'].invalid">
+              <p *ngIf="newEventForm.controls['eventCity'].errors.required" class="error">
+                City is required.
+              </p>
+              <p *ngIf="newEventForm.controls['eventCity'].errors.minlength" class="error">
+                City must be at least 2 characters long.
+              </p>
+            </ng-container>
+          </div>
+          
+          <div class="new-event-address margin__t flex__column__start">
+            <label for="eventAddress">Address: <span class="red">*</span></label>
+            <input [(ngModel)]="eventAddress" (input)="getSuggestions($event.target.value)" type="text" name="eventAddress" id="eventAddress" required minlength="5">
+            <div *ngIf="addressSuggestions.length > 0" class="suggestions">
+              <ul>
+                <li *ngFor="let suggestion of addressSuggestions" (click)="selectSuggestion(suggestion)">
+                  {{ suggestion.description }}
+                </li>
+              </ul>
+            </div>
+          
+            <ng-container *ngIf="newEventForm.controls['eventAddress']?.touched && newEventForm.controls['eventAddress'].invalid">
+              <p *ngIf="newEventForm.controls['eventAddress'].errors.required" class="error">
+                Address is required.
+              </p>
+              <p *ngIf="newEventForm.controls['eventAddress'].errors.minlength" class="error">
+                Address must be at least 5 characters long.
+              </p>
+            </ng-container>
+          </div>
+
+
+        <!-- <div class="new-event-city margin__t flex__column__start">
             <label for="eventCity">City: <span class="red">*</span></label>
             <input [(ngModel)]="eventCity" type="text" name="eventCity" id="eventCity" required minlength="2">
 
@@ -97,13 +172,13 @@
                     Address must be at least 5 characters long.
                 </p>
             </ng-container>
-        </div>
+        </div> -->
 
         <div class="new-event-date margin__t flex__column__start">
             <label for="eventDate">Date: <span class="red">*</span></label>
             <input [(ngModel)]="eventDate" type="date" name="eventDate" id="eventDate" required>
 
-            <ng-container *ngIf="newEventForm.controls['eventDate'].touched && newEventForm.controls['eventDate'].invalid">
+            <ng-container *ngIf="newEventForm.controls['eventDate']?.touched && newEventForm.controls['eventDate'].invalid">
                 <p *ngIf="newEventForm.controls['eventDate'].errors.required" class="error">
                     Date is required.
                 </p>
@@ -115,7 +190,7 @@
             <input [(ngModel)]="eventStartTime" type="time" name="eventStartTime" id="eventStartTime" required>
 
             <ng-container
-                *ngIf="newEventForm.controls['eventStartTime'].touched && newEventForm.controls['eventStartTime'].invalid">
+                *ngIf="newEventForm.controls['eventStartTime']?.touched && newEventForm.controls['eventStartTime'].invalid">
                 <p *ngIf="newEventForm.controls['eventStartTime'].errors.required" class="error">
                     Start time is required.
                 </p>
@@ -140,7 +215,7 @@
 
 
             <ng-container
-                *ngIf="newEventForm.controls['eventNumberOfGuests'].touched && newEventForm.controls['eventNumberOfGuests'].invalid">
+                *ngIf="newEventForm.controls['eventNumberOfGuests']?.touched && newEventForm.controls['eventNumberOfGuests'].invalid">
                 <p *ngIf="newEventForm.controls['eventNumberOfGuests'].errors.required" class="error">
                     Number of Guests is required.
                 </p>
