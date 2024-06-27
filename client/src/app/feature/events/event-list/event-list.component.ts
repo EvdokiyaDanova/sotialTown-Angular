@@ -35,7 +35,7 @@ export class EventListComponent implements OnInit, AfterViewInit {
 
   eventList: IEvent[];
 
-  readonly pageSize = 2;
+  readonly pageSize = 7;
   currentPage: number = 0;
   totalResults: number = 0;
 
