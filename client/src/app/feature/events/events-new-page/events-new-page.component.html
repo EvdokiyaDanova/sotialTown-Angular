@@ -66,71 +66,87 @@
 
 
 
-
         <div class="new-event-country margin__t flex__column__start">
             <label for="eventCountry">Country: <span class="red">*</span></label>
-            <input [(ngModel)]="eventCountry" (input)="getSuggestions($event.target.value)" type="text" name="eventCountry" id="eventCountry" required minlength="2">
-            <div *ngIf="addressSuggestions.length > 0" class="suggestions">
+            <input
+              [(ngModel)]="eventCountry"
+              (input)="getSuggestions($event.target.value, 'eventCountry')"
+              (keydown)="handleKeyDown($event)"
+              (blur)="hideSuggestions()"
+              type="text"
+              name="eventCountry"
+              id="eventCountry"
+              required
+              minlength="2"
+              autocomplete="off" 
+            >
+            <div *ngIf="activeField === 'eventCountry' && showSuggestions && addressSuggestions.length > 0" class="suggestions">
               <ul>
-                <li *ngFor="let suggestion of addressSuggestions" (click)="selectSuggestion(suggestion)">
+                <li
+                  *ngFor="let suggestion of addressSuggestions; let i = index"
+                  (click)="selectSuggestion(suggestion)"
+                  [class.active]="i === activeSuggestionIndex"
+                >
                   {{ suggestion.description }}
                 </li>
               </ul>
             </div>
-          
-            <ng-container *ngIf="newEventForm.controls['eventCountry']?.touched && newEventForm.controls['eventCountry'].invalid">
-              <p *ngIf="newEventForm.controls['eventCountry'].errors.required" class="error">
-                Country is required.
-              </p>
-              <p *ngIf="newEventForm.controls['eventCountry'].errors.minlength" class="error">
-                Country must be at least 2 characters long.
-              </p>
-            </ng-container>
           </div>
           
           <div class="new-event-city margin__t flex__column__start">
             <label for="eventCity">City: <span class="red">*</span></label>
-            <input [(ngModel)]="eventCity" (input)="getSuggestions($event.target.value)" type="text" name="eventCity" id="eventCity" required minlength="2">
-            <div *ngIf="addressSuggestions.length > 0" class="suggestions">
+            <input
+              [(ngModel)]="eventCity"
+              (input)="getSuggestions($event.target.value, 'eventCity')"
+              (keydown)="handleKeyDown($event)"
+              (blur)="hideSuggestions()"
+              type="text"
+              name="eventCity"
+              id="eventCity"
+              required
+              minlength="2"
+              autocomplete="off" 
+            >
+            <div *ngIf="activeField === 'eventCity' && showSuggestions && addressSuggestions.length > 0" class="suggestions">
               <ul>
-                <li *ngFor="let suggestion of addressSuggestions" (click)="selectSuggestion(suggestion)">
+                <li
+                  *ngFor="let suggestion of addressSuggestions; let i = index"
+                  (click)="selectSuggestion(suggestion)"
+                  [class.active]="i === activeSuggestionIndex"
+                >
                   {{ suggestion.description }}
                 </li>
               </ul>
             </div>
-          
-            <ng-container *ngIf="newEventForm.controls['eventCity']?.touched && newEventForm.controls['eventCity'].invalid">
-              <p *ngIf="newEventForm.controls['eventCity'].errors.required" class="error">
-                City is required.
-              </p>
-              <p *ngIf="newEventForm.controls['eventCity'].errors.minlength" class="error">
-                City must be at least 2 characters long.
-              </p>
-            </ng-container>
           </div>
           
           <div class="new-event-address margin__t flex__column__start">
             <label for="eventAddress">Address: <span class="red">*</span></label>
-            <input [(ngModel)]="eventAddress" (input)="getSuggestions($event.target.value)" type="text" name="eventAddress" id="eventAddress" required minlength="5">
-            <div *ngIf="addressSuggestions.length > 0" class="suggestions">
+            <input
+              [(ngModel)]="eventAddress"
+              (input)="getSuggestions($event.target.value, 'eventAddress')"
+              (keydown)="handleKeyDown($event)"
+              (blur)="hideSuggestions()"
+              type="text"
+              name="eventAddress"
+              id="eventAddress"
+              required
+              minlength="2"
+              autocomplete="off" 
+            >
+            <div *ngIf="activeField === 'eventAddress' && showSuggestions && addressSuggestions.length > 0" class="suggestions">
               <ul>
-                <li *ngFor="let suggestion of addressSuggestions" (click)="selectSuggestion(suggestion)">
+                <li
+                  *ngFor="let suggestion of addressSuggestions; let i = index"
+                  (click)="selectSuggestion(suggestion)"
+                  [class.active]="i === activeSuggestionIndex"
+                >
                   {{ suggestion.description }}
                 </li>
               </ul>
             </div>
-          
-            <ng-container *ngIf="newEventForm.controls['eventAddress']?.touched && newEventForm.controls['eventAddress'].invalid">
-              <p *ngIf="newEventForm.controls['eventAddress'].errors.required" class="error">
-                Address is required.
-              </p>
-              <p *ngIf="newEventForm.controls['eventAddress'].errors.minlength" class="error">
-                Address must be at least 5 characters long.
-              </p>
-            </ng-container>
           </div>
-
-
+          
         <!-- <div class="new-event-city margin__t flex__column__start">
             <label for="eventCity">City: <span class="red">*</span></label>
             <input [(ngModel)]="eventCity" type="text" name="eventCity" id="eventCity" required minlength="2">

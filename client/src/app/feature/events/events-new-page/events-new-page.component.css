@@ -87,3 +87,30 @@ p.error {
 .input-error {
     border-left-color: red;
 }
+
+
+/* Style for the suggestions container */
+.suggestions {
+    border: 1px solid #ccc;
+    max-height: 200px;
+    overflow-y: auto;
+    background: #fff;
+  }
+  
+  .suggestions ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+  }
+  
+  .suggestions li {
+    padding: 10px;
+    cursor: pointer;
+  }
+  
+  .suggestions li.active {
+    background-color: #007bff;
+    color: #fff;
+  }
+  
+  
